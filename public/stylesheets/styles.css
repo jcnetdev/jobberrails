@@ -316,7 +316,7 @@ table/job-posts td.time-posted img, table/job-posts td.applicants img {
   margin-bottom: 7px;
 }
 
-#no-ads {
+#no_ads {
   color: #555;
   margin-top: 10px;
 }
@@ -723,12 +723,12 @@ h4 {
 }
 
 
-#sort-by-type {
+.sort-by-type {
   float: right;
   font-size: 11px;
   color: #888;
 }
-  div#sort-by-type a:hover { background: #fff; }
+  div.sort-by-type a:hover { background: #fff; }
   
   
 .applied-to-job {

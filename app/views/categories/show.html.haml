@@ -1,0 +1,20 @@
+.page-content
+  .job-listings
+    - unless @jobs.empty?
+      .sort-by-type
+        Only display&nbsp;
+        - JobType.list.each do |job_type|
+          = link_to job_type_image(job_type), category_url(@category, :job_type => job_type.value)
+    
+    %h2
+      Jobs for
+      = @category.name
+    
+    = partial "jobs/parts/post_table", :jobs => @jobs
+    
+    - if @jobs.empty?
+      #no_ads
+        There are currently no available jobs for 
+        %strong== #{@category.name}.
+        = br
+        = link_to "Post a new job", new_job_url("job[category_id]" => "#{@category.id}")
