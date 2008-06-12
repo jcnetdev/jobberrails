@@ -7,7 +7,7 @@
       = image_tag "icon-delete.png"
       Unfortunately, your application could not be sent. Please check the form. Also, we only allow 1 application every 10 minutes.
   
-  #apply_online{hidden_if(job.id == session[:apply_error_id])}
+  #apply_online{hidden_if(job.id != session[:apply_error_id])}
     - form_for(@job_applicant || JobApplicant.new_default, |
                 :url => apply_job_url(@job), |
                 :html => {:method => :post, :id => "apply_online_form", :multipart => true}) do |f| |
@@ -26,7 +26,7 @@
           %td{:valign => "top"}
             %label Upload Resume/CV
           %td
-            = f.field_field :uploaded_data
+            = f.file_field :uploaded_data
             .suggestion
               Max. 3 MB. Recommended formats: PDF, RTF, DOC, ODT.
         %tr

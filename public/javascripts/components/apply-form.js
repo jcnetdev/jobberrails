@@ -4,7 +4,7 @@ $j(document).ready(function() {
   // expand form
   $j("#apply_online_now a").click(function() {
     
-    $j('#apply_online').SwitchVertically(10); 
+    $j('#apply_online').slideToggle("slow");
     $j('#apply_name').focus(); 
     window.location.href = '#apply'; 
 
@@ -13,7 +13,7 @@ $j(document).ready(function() {
   
   // hide form
   $j("#apply_online .cancel").click(function() {    
-    $j('#apply_online').SwitchVertically(10); 
+    $j('#apply_online').slideUp("slow"); 
     window.location.href = ''; 
     return false;
   });

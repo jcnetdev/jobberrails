@@ -11,7 +11,7 @@ class Category < ActiveRecord::Base
   
   def self.to_select
     list.map do |category|
-      [category.name, category.value]
+      [category.name, category.id]
     end
   end
   

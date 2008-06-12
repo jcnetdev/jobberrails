@@ -1,16 +1,16 @@
 .page-content
   -# show the latest jobs
-  - unless @latest_jobs.blank?
+  - unless Job.recent_jobs.empty?
     %h3 Most Recent Job Posts
-    = partial "jobs/parts/post_table", :jobs => @latest_jobs
+    = partial "jobs/parts/post_table", :jobs => Job.recent_jobs
 
   -# show the popular jobs
-  - unless @popular_jobs.blank?
+  - unless Job.popular_jobs.empty?
     = br
     %h3 Most Popular Jobs
-    = partial "jobs/parts/post_table", :jobs => @popular_jobs, :show_applicants => true
+    = partial "jobs/parts/post_table", :jobs => Job.popular_jobs, :show_applicants => true
 
-  - if @latest_jobs.blank? and @most_applied_jobs.blank?
+  - if Job.popular_jobs.blank? and Job.recent_jobs.blank?
     = br
     %p.empty
       No jobs have been posted on this board yet. 

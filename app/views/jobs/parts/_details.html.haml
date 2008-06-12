@@ -19,7 +19,7 @@
       .applied-to-job
         = job.job_applicants.size
         %p
-          - if job.applicants.size != 1
+          - if job.job_applicants.size != 1
             applicants
           - else
             applicant

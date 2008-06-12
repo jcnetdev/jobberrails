@@ -20,6 +20,14 @@ class Job < ActiveRecord::Base
     Job.new({:job_type => JobType.first, :apply_online => true}.merge(init_values))
   end
   
+  def self.recent_jobs
+    active.find(:all, :order => "created_at DESC", :limit => 7)
+  end
+  
+  def self.popular_jobs
+    active.find(:all, :order => "job_applicants_size DESC", :limit => 7)
+  end
+  
   # switch label used for html forms
   def location_switch_label
     if outside_location.blank?

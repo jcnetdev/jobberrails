@@ -45,6 +45,11 @@ class JobsController < ApplicationController
     
     if request.put?
       @job.verified = true
+      
+      # todo: add manual confirmation
+      @job.confirmed = true
+      @job.is_active = true
+      
       @job.save!
       
       redirect_to confirm_job_url(@job)

@@ -1,9 +1,10 @@
 class JobApplicant < ActiveRecord::Base
   
-  belongs_to :job
+  belongs_to :job, :counter_cache => true
   
   # allow attachments
-  has_attachment :storage => :s3,
+  has_attachment :storage => :file_system,
+                 # :storage => :s3,
                  :path_prefix => "public/attachments"
 
   def self.new_default(init_values = {})

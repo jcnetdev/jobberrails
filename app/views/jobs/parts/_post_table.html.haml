@@ -9,14 +9,14 @@
       %td
         = job_type_image(job.job_type)
         = link_to job.title, job_url(job), :title => job.title
-        %span.la= at
+        %span.la at
         = job_location_text(job)
       
       -# display either applicants or time
       - if show_applicants
-        %td.applicants
-          = image_tag "clock.gif"
-          = job.created_at.to_s(:job_listing)
-      - else
         %td.time-posted
-          = pluralize(job.applicants.size, "applicant")
+          = pluralize(job.job_applicants.size, "applicant")
+      - else
+        %td.applicants
+          = image_tag "clock.gif", :class => "vert-middle"
+          = job.created_at.to_s(:job_listing)
