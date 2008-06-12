@@ -8,7 +8,7 @@ load 'deploy'
 # The svn repository is used to export the code into the temporary directory before 
 # uploading code into the Morph control panel. Currently only svn is supported, 
 # but you could change it to fit your need by changing the get_code task
-set :repository, "." # Set here your repository! Example: 'https://www.myrepo.com/myapp/trunk'
+set :repository, "git@github.com:jcnetdev/jobberrails.git" # Set here your repository! Example: 'https://www.myrepo.com/myapp/trunk'
 set :repo_line_number, __LINE__ - 1 # Needed to report missing repository later on
 
 # The version name to set in the control panel. Defautls to date and time, but can be altered by passing it
@@ -95,7 +95,7 @@ namespace :morph do
       abort('*** ERROR: Export from repository failed! Please check the repository setting at the start of the file') if $?.to_i != 0
 
       # Verify that we have the expected rails structure 
-      ['/app', '/public', '/config/environment.rb', '/lib'].each do |e| 
+      ['/app', '/public', '/config/environment.rb'].each do |e| 
         abort "*** ERROR: Rails directories are missing. Please make sure your set :repository is correct!" if !File.exist?("#{morph_tmp_dir}#{e}")
       end
 
