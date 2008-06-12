@@ -1,7 +1,8 @@
 == JobberRails
 
 JobberRails is a conversion of the excellent open source php web app, JobberBase, to Rails.
-www.jobberbase.com
+
+www.jobberrails.com
 
 == Install Instructions
 
@@ -15,7 +16,8 @@ www.jobberbase.com
 == Hosted Version
 
 The latest version is currently running on a MorphExchange developer account here:
-http://jobberrails.git
+http://jobberrails.morphexchange.com
+
 
 
 == S3 Support for Resumes
@@ -52,3 +54,16 @@ v1.0 will include all the functionality that currently exists in JobberBase
 
 If you want to help convert JobberRails, fork the code on github and start making changes. 
 I'll be extremely happy to merge your changes back in and give you credit for your work in the changelog.
+
+== Maintainer Info
+
+Jacques Crocker
+railsjedi@gmail.com
+www.railsjedi.com
+
+For more excellent Open Source Rails applications go to www.opensourcerails.com.
+
+== Credits
+
+All credit for this app goes to the fine folks over at JobberBase who put together a slick interface for 
+a vertical job board. See them at www.jobberbase.com
