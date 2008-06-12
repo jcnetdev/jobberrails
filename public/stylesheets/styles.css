@@ -73,7 +73,7 @@ em {
 
 
 div#skip { display:none;}
-div#container { width:950px; text-align:left; font-size:1.2em; min-height: 100%;  height: auto !important; height: 100%; margin: 0 auto 0em; }
+div#container { width:950px; text-align:left; font-size:1.2em; min-height: 600px;  height: auto !important; height: 100%; margin: 0 auto 0em; }
 div#header { height:120px; width:950px; position:relative;}
 div#header h1#logo { width:347px; height:80px; position:absolute; top:25px; left:20px; }
 div#header h1#logo a { width:347px; height:80px; outline:0; background: url(/images/logo.png) 0 0 no-repeat; text-indent:-1000em; float:left; }
