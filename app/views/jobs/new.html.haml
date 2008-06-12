@@ -1,0 +1,94 @@
+.page-content
+  = partial "jobs/parts/stepbar", :step => 1
+  
+  - unless @job.errors.empty?
+    .validation-failure
+      = image_tag "icon-delete.png", :style => "vertical-align: -3px"
+      Please revise the form...
+  
+  - form_for @job, :html => {:id => "publish_form"} do |f|
+    %fieldset
+      %legend Job Details
+      %table{:border => "0", :cellspacing => "2", :cellpadding => "2"}
+        %tr
+          %td{:colspan => "2"}
+            - JobType.list.each do |job_type|
+              %label
+                = f.radio_button :job_type_id, job_type.id
+                = job_type_image(job_type)
+            = nbsp*2
+            = f.select :category_id, Category.to_select
+        
+        -# title field
+        %tr
+          %td.publish-label{:valign => "top"} Title:
+          %td
+            = f.text_field :title, :size => 50
+            .suggestion e.g. 'PHP Developer', 'UI designer'
+        
+        -# location field
+        %tr
+          %td{:valign => "top"} Location:
+          %td
+            = f.select :location_id, Location.to_select, :disabled => !@job.outside_location.blank?, :include_blank => "-- Anywhere --"
+            = link_to @job.location_switch_label, "#", :id => "other_location_label", :onclick => "Jobber.HandleLocationOutside(); return false;"
+            #location_outside{hidden_if(@job.outside_location.blank?)}
+              where ?
+              = f.text_field :outside_location, :size => 50, :maxlength => 140
+              .suggestion
+                e.g. 'London, UK'
+        
+        -# description field
+        %tr
+          %td{:valign => "top"} Description:
+          %td
+            = f.text_area :description, :size => "80x15"
+            .suggestion
+              = link_to "Format text with Textile", "http://www.textism.com/tools/textile/", |
+                        :target => "_blank", :onclick => "$j('#textile-suggestions').toggle();return false;" |              
+            = partial "jobs/parts/textile_suggestions"
+    
+    -# Company Details
+    %fieldset
+      %legend Hiring Company or Person
+      %table{:border => "0", :cellspacing => "2", :cellpadding => "2"}
+        -# company field
+        %tr
+          %td.publish-label Name:
+          %td
+            = f.text_field :company, :size => 40
+
+        -# website field
+        %tr
+          %td{:valign => "top"} Website:
+          %td
+            == http://#{f.text_field :url, :size => 35}
+            -# .suggestion e.g. 'www.google.com'
+        
+        -# email field
+        %tr
+          %td.publish-label
+            Email:
+            = br
+            %strong (not published)
+          %td
+            = f.text_field :poster_email
+            .suggestion
+              Online applications will be sent to this address.
+        
+        -# email field
+        %tr
+          %td.publish-label
+            Apply Online:
+          %td
+            %label
+              = f.check_box :apply_online, :style => "vertical-align: -3px"
+              %span.suggestion
+                Allow candidates to apply directly from your post.
+        
+        
+    %fieldset.actions
+      = submit_tag "Step 2: Verify ad", :id => "submit"
+    
+    %fieldset.hidden
+      

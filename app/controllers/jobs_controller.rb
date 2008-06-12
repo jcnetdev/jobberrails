@@ -24,7 +24,7 @@ class JobsController < ApplicationController
   # GET /jobs/new
   # GET /jobs/new.xml
   def new
-    @job = Job.new
+    @job = Job.new_default
 
     respond_to do |format|
       format.html # new.html.erb

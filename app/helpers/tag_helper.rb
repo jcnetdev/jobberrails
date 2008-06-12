@@ -6,6 +6,10 @@ module TagHelper
   def hr
     "<hr />"
   end
+  
+  def nbsp
+    "&nbsp;"
+  end
 
   def space
     "<hr class='space' />"
@@ -38,6 +42,14 @@ module TagHelper
   def hidden_if(condition)
     if condition
       {:style => "display:none"}
+    else
+      {}
+    end
+  end
+
+  def add_class_if(condition, css_class)
+    if condition
+      {:class => css_class}
     else
       {}
     end

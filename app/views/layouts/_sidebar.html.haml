@@ -10,7 +10,6 @@
     %ul
       - last_viewed_jobs.each do |job|
         %li= link_to "&raquo; #{job.title}", job_url(job)
-        
   
   -# show stats
   - if current_page?(root_url)

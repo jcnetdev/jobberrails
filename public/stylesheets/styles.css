@@ -99,7 +99,7 @@ div#promo a:hover { background: #fff; }
 
 #other_results span {float: right;}
 
-#content { width: 755px; padding-right: 10px; }
+#content { float: left; width: 755px; padding-right: 10px; }
 #content p { margin: 0 0 10px 0; padding: 0;}
 #content a { color: #09C; background-color:transparent; padding: 2px; }
 #content a:hover { background-color: #09C; color: #fff; text-decoration: none; padding: 2px;}
@@ -184,44 +184,45 @@ div#categories ul li.selected a span.cnr{ background-position: right 0px; cursor
   
 .info { color: #888; }
   
-table#job-posts, table#job-posts2, table#job-posts3 {
+.job-posts {
   width: 100%;
 }
-  table#job-posts tr.alt td, table#job-posts2 tr.alt td, table#job-posts3 tr.alt td {
-    background: #f5f5f5;
-  }
+table.job-posts tr.alt td {
+  background: #f5f5f5;
+}
 
-  table#job-posts tr.over td, table#job-posts2 tr.over td, table#job-posts3 tr.over td {
-    background: #f5fefe;
-  }
-  table#job-posts td, table#job-posts2 td, table#job-posts3 td {
-    padding: 5px;
-    border-bottom: 1px solid #ddd;
-  }
-  table#job-posts a:link, table#job-posts a:visited, table#job-posts2 a:link, table#job-posts2 a:visited, table#job-posts3 a:link, table#job-posts3 a:visited {
-    color: #0099CC;
-    padding: 2px;
-  }
-  table#job-posts a:hover, table#job-posts2 a:hover, table#job-posts3 a:hover {
-    background-color: #0099CC;
-    color: #fff;
-    text-decoration: none;
-    padding: 2px;
-  }
-  table#job-posts td.time-posted, table#job-posts2 td.time-posted, table#job-posts3 td.time-posted {
-    text-align: right;
-    color: #888;
-    font-size: 11px;
-    width: 80px;
-  }
-    table#job-posts td.time-posted img, table#job-posts2 td.time-posted img, table#job-posts3 td.time-posted img {
-      width: 11px;
-    }
-
-div.footer {
+table.job-posts tr.over td {
+  background: #f5fefe;
+}
+table.job-posts td {
+  padding: 5px;
+  border-bottom: 1px solid #ddd;
+}
+table.job-posts a:link, table.job-posts a:visited {
+  color: #0099CC;
+  padding: 2px;
+}
+table.job-posts a:hover {
+  background-color: #0099CC;
+  color: #fff;
+  text-decoration: none;
+  padding: 2px;
+}
+table.job-posts td.time-posted, table.job-posts td.applicants {
+  text-align: right;
   color: #888;
   font-size: 11px;
-  background: #F2FCFF url(/images/footer-bg.png) no-repeat center top;
+  width: 80px;
+}
+table/job-posts td.time-posted img, table/job-posts td.applicants img {
+  width: 11px;
+}
+
+#footer {
+  clear: both;
+  color: #888;
+  font-size: 11px;
+  background: #F2FCFF url(../img/footer-bg.png) no-repeat center top;
   text-align: center;
   float: left;
   width: 100%;
@@ -230,32 +231,47 @@ div.footer {
   height: 14em;
 }
 
-#footer-contents {
+.footer-contents {
   width: 950px;
   margin:0 auto;
   text-align: left;
 }
-#footer-copyright {
+
+/*#footer {
+  color: #888;
+  font-size: 11px;
+  background: #F2FCFF url(/images/footer-bg.png) no-repeat center top;
+  text-align: center;
+  float: left;
+  width: 950px;
+  margin:0 auto;
+  text-align: left;
+  padding-top: 12px;
+  margin-top: 30px;
+  height: 14em;
+}*/
+
+.footer-copyright {
   float: right;
 }
-#footer-col1 {
+.footer-left {
   float: left;
   display: inline;
   width: 120px;
 }
-#footer-col2 {
+.footer-mid {
   float: left;
   display: inline;
   margin-left: 50px;
   width: 120px;
 }
-#footer-col3 {
+.footer-right {
   float: left;
   display: inline;
   margin-left: 50px;
   width: 130px;
 }
-#footer-col4 {
+.footer-col4 {
   float: left;
   display: inline;
   margin-left: 30px;
@@ -276,7 +292,16 @@ div.footer {
 .validation-error {
   color: red;
 }
-input.error, textarea.error {
+
+.withErrors
+{
+  padding-right: 20px;
+  background-image: url(/images/icon-delete.png);
+  background-repeat: no-repeat;
+  background-position: right center;
+}
+
+.withErrors input, .withErrors textarea {
   border: 1px solid red !important;
 }
 .validation-failure {
@@ -385,18 +410,18 @@ span.la {
   color: #888;
 }
 
-#step-1 {
+#step_1 {
   float: left;
   display: inline;
   width: 100px;
 }
-#step-2 {
+#step_2 {
   float: left;
   display: inline;
   margin-left: 30px;
   width: 120px;
 }
-#step-3 {
+#step_3 {
   float: left;
   display: inline;
   margin-left: 30px;
@@ -605,7 +630,7 @@ div.not-ok-response {
   color: red;
 }
 
-#location_outside_ro {
+#location_outside {
   margin-top: 5px;
 }
 
@@ -634,7 +659,7 @@ h2 a {
   font-weight: normal;
 }
 
-h3, #job-listings h2 {
+h3, .job-listings h2 {
   font-size: 14px;
   margin: 10px 0 7px 0;
   font-weight: bold;
@@ -642,7 +667,7 @@ h3, #job-listings h2 {
 
 h3.steps, div.steps {
   margin: 0;
-  padding: 2px 5px 5px 8px;
+  padding: 1px 5px 5px 8px;
   background: transparent url(/images/header-bg.png) no-repeat left;
   font-weight: normal;
   color: #9AD4FF;
@@ -837,7 +862,7 @@ label.request-label {
 #home-promo a { text-decoration: underline; font-size: 14px;}
 
 /* paginator */
-#job-listings .current_page{
+.job-listings .current_page{
   font-weight: bold;
   border: 1px solid #ccc;
   padding: 1px 2px 1px 2px;

@@ -1,0 +1,11 @@
+- step = 1 unless local_assigns[:step]
+
+.steps
+  #step_1{add_class_if(step == 1, "step-active")}
+    Step 1: Write
+  #step_2{add_class_if(step == 2, "step-active")}
+    Step 2: Verify
+  #step_3{add_class_if(step == 3, "step-active")}
+    Step 3: Confirm
+
+= clear_tag(:br)

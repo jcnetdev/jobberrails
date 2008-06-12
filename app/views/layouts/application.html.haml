@@ -15,8 +15,11 @@
       = partial "categories/list"
       = partial "layouts/sidebar"
       
-      = yield
+      #content
+        -# holds our ajax search results
+        .job-listings
+        = yield
 
-      = partial "layouts/footer"
+    = partial "layouts/footer"
       
   

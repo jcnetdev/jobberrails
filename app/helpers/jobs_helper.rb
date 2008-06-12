@@ -7,4 +7,24 @@ module JobsHelper
     
     return @last_viewed_jobs
   end
+  
+  # display job display text
+  def job_location_text(job)
+    haml_tag :span, :class => "job-location" do
+      puts job.company
+      
+      if job.location == "Anywhere"
+        puts ", #{job.location}"
+      else
+        haml_tag :span, "in", :class => "la"
+        puts " #{job.location}"
+      end
+    end
+  end
+  
+  # display icon for job type
+  def job_type_image(job_type)
+    image_tag "job-types/#{job_type.value}.png", :alt => job_type.value
+  end
+  
 end

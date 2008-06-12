@@ -1,0 +1,22 @@
+-# Set Partial Parameter Defaults
+- jobs = [] unless local_assigns[:jobs]
+- show_applicants = false unless local_assigns[:show_applicants]
+
+-# Display Job Posts
+%table.job-posts{:cellspacing => 0}
+  - jobs.each do |job|
+    %tr
+      %td
+        = job_type_image(job.job_type)
+        = link_to job.title, job_url(job), :title => job.title
+        %span.la= at
+        = job_location_text(job)
+      
+      -# display either applicants or time
+      - if show_applicants
+        %td.applicants
+          = image_tag "clock.gif"
+          = job.created_at.to_s(:job_listing)
+      - else
+        %td.time-posted
+          = pluralize(job.applicants.size, "applicant")

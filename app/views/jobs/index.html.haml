@@ -1,0 +1,18 @@
+.page-content
+  -# show the latest jobs
+  - unless @latest_jobs.blank?
+    %h3 Most Recent Job Posts
+    = partial "jobs/parts/post_table", :jobs => @latest_jobs
+
+  -# show the popular jobs
+  - unless @popular_jobs.blank?
+    = br
+    %h3 Most Popular Jobs
+    = partial "jobs/parts/post_table", :jobs => @popular_jobs, :show_applicants => true
+
+  - if @latest_jobs.blank? and @most_applied_jobs.blank?
+    = br
+    %p.empty
+      No jobs have been posted on this board yet. 
+      = br
+      = link_to "Post a Job Now", new_job_url
