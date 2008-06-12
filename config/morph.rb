@@ -8,7 +8,7 @@ load 'deploy'
 # The svn repository is used to export the code into the temporary directory before 
 # uploading code into the Morph control panel. Currently only svn is supported, 
 # but you could change it to fit your need by changing the get_code task
-set :repository, "git@github.com:jcnetdev/jobberrails.git" # Set here your repository! Example: 'https://www.myrepo.com/myapp/trunk'
+set :repository, "." # Set here your repository! Example: 'https://www.myrepo.com/myapp/trunk'
 set :repo_line_number, __LINE__ - 1 # Needed to report missing repository later on
 
 # The version name to set in the control panel. Defautls to date and time, but can be altered by passing it
