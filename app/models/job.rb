@@ -16,7 +16,8 @@ class Job < ActiveRecord::Base
   before_save :format_fields
   
   # create a default populated job
-  def self.new_default(init_values = {})
+  def self.new_default(init_values = nil)
+    init_values ||= {}
     Job.new({:job_type => JobType.first, :apply_online => true}.merge(init_values))
   end
   
