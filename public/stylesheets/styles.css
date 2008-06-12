@@ -222,7 +222,7 @@ table/job-posts td.time-posted img, table/job-posts td.applicants img {
   clear: both;
   color: #888;
   font-size: 11px;
-  background: #F2FCFF url(../img/footer-bg.png) no-repeat center top;
+  background: #F2FCFF url(/images/footer-bg.png) no-repeat center top;
   text-align: center;
   float: left;
   width: 100%;
