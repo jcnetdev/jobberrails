@@ -1,0 +1,58 @@
+HamlForms
+==============
+
+Plugin to create elegant, DRY forms using HAML
+
+All fields produce markup in the following fashion:
+
+<div class="field [type] [classes]">
+  <label for="[object]_[field]">[field.titlize]</label>
+  [field]
+  <span class="errors">[field.validation_message]</span>
+  [yield]
+</div>
+
+The errors only show up when the field has a validation error. The yield section allows you to add your own embedded HAML which renders inside the field.
+
+
+More Examples:
+
+- haml_form_for :user, @user, :url => users_url do |u|
+  = u.text_field :full_name, :label => "Enter Your Name"
+  = u.select :specialty, options
+  = u.radio_group :terms_of_service, :yes_no, :label => "Do you accept our TOS?", :separator => ""
+  = u.submit
+
+
+One weird thing is that you can either user - or = to output the helpers. For example,
+
+- u.text_field :full_name
+is equivalent to
+= u.text_field
+
+However, if you use -, then you can also provide a block which will generate html that will be injected at the end of div.field
+
+- u.text_field :full_name do
+  = link_to "Help Link", "#help"
+
+..generates..
+
+<div class="field text_field">
+  <label for="user_full_name">Full Name</label>
+  <input id="user_full_name" name="user[full_name]" type="text" />
+  <a href="#help">Help Link</a>
+</div>
+
+== LabelHelper
+
+ In addition, this plugin provides label helpers for forms.
+
+ - haml_form_for :user do |u|
+   = u.label :first_name
+   = u.label :last_name, "Enter Last Name"
+
+ produces
+
+ <label for="user_first_name">First Name</label>
+ <label for="user_last_name">Enter Last Name</label>
+

@@ -1,0 +1,7 @@
+author: Daniel Owsianski (daniel-at-jarmark-d0t-org)
+summary: Application specific configuration in pure old Rails style.
+homepage: http://jarmark.org/projects/app-config/
+plugin: http://svn.jarmark.org/rails/app_config
+license: MIT
+version: 0.1
+rails_version: 1.0.0+

@@ -1,0 +1,25 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  title: MyString
+  description: MyText
+  company: MyString
+  url: MyString
+  apply: MyString
+  is_temp: false
+  is_active: false
+  outside_location: MyString
+  poster_email: MyString
+  apply_online: false
+
+two:
+  title: MyString
+  description: MyText
+  company: MyString
+  url: MyString
+  apply: MyString
+  is_temp: false
+  is_active: false
+  outside_location: MyString
+  poster_email: MyString
+  apply_online: false

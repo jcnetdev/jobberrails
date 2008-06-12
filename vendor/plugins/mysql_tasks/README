@@ -1,0 +1,12 @@
+= MysqlTasks
+
+Some rake tasks to automate common database tasks (create/destroy & backup/restore).
+
+== Components
+
+rake db:mysql:create           # Create database (using database.yml config)
+rake db:mysql:destroy          # Destroy database (using database.yml config)
+rake db:mysql:backup           # Dump schema and data to an SQL file (/db/backup_YYYY_MM_DD.sql)
+rake db:mysql:restore          # Load schema and data from an SQL file (/db/restore.sql)
+
+Specifying RAILS_ENV works if you want to perform operations on test or production databases.

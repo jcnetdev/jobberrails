@@ -10,6 +10,7 @@ RAILS_GEM_VERSION = '2.1.0' unless defined? RAILS_GEM_VERSION
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
 
+require 'plugins/app_config/lib/configuration'
 Rails::Initializer.run do |config|
   # Settings in config/environments/* take precedence over those specified here.
   # Application configuration should go into files in config/initializers
@@ -29,7 +30,7 @@ Rails::Initializer.run do |config|
   # Only load the plugins named here, in the order given. By default, all plugins 
   # in vendor/plugins are loaded in alphabetical order.
   # :all can be used as a placeholder for all plugins not explicitly named
-  # config.plugins = [ :exception_notification, :ssl_requirement, :all ]
+  config.plugins = [ :exception_notification, :all ]
 
   # Add additional load paths for your own custom dirs
   # config.load_paths += %W( #{RAILS_ROOT}/extras )
@@ -64,4 +65,16 @@ Rails::Initializer.run do |config|
 
   # Activate observers that should always be running
   # config.active_record.observers = :cacher, :garbage_collector
+  
+  # Gem Requirements
+  config.gem "haml", :version => ">= 2.0.0"
+  config.gem "will_paginate", :version => ">= 2.2.2"
+  
+  # Configuration Settings
+  config.app_config.site_name = "JobberRails"
+  config.app_config.site_url = "http://www.jobberrails.com"
+  config.app_config.from_email = "JobberRails<jobberrails@gmail.com>"
+  config.app_config.require_email_activation = false
+
+  config.app_config.search_suggestions = '(e.g. "ajax", "designer, london", "php, chicago")'
 end

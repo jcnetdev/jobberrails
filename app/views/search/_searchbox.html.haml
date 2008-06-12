@@ -1,0 +1,8 @@
+#box
+  #search
+    - form_tag search_url, :id => "search_form", :method => :post do
+      %fieldset
+        = text_field_tag :keywords, params[:keywords], :id => "keywords", :class => "example", :maxlength => 30 , :title => "search for a job"
+        %span#indicator.hidden= image_tag "ajax-loader.gif", :alt => ""
+        %label.suggestionTop= AppConfig.search_suggestions
+      

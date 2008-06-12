@@ -9,6 +9,41 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 0) do
+ActiveRecord::Schema.define(:version => 20080612023820) do
+
+  create_table "categories", :force => true do |t|
+    t.string   "name"
+    t.string   "value"
+    t.integer  "position",   :limit => 11, :default => 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "job_types", :force => true do |t|
+    t.string   "name"
+    t.string   "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "jobs", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.string   "company"
+    t.string   "url"
+    t.string   "apply"
+    t.string   "poster_email"
+    t.integer  "city_id",          :limit => 11
+    t.string   "outside_location"
+    t.integer  "category_id",      :limit => 11
+    t.integer  "job_type_id",      :limit => 11
+    t.boolean  "is_temp"
+    t.boolean  "is_active"
+    t.boolean  "apply_online"
+    t.integer  "views_count",      :limit => 11, :default => 0
+    t.string   "auth"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

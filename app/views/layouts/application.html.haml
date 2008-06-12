@@ -1,0 +1,22 @@
+!!! Strict
+%html{html_attrs}
+  %head
+    %meta{"http-equiv" => "Content-type", "content" => "text/html; charset=utf-8"}
+    
+    = title :site => AppConfig.site_name
+    = stylesheets
+    = javascripts
+  
+  %body
+    #container
+      = partial "session/login_status"
+      = partial "layouts/header"
+      = partial "search/searchbox"
+      = partial "categories/list"
+      = partial "layouts/sidebar"
+      
+      = yield
+
+      = partial "layouts/footer"
+      
+  

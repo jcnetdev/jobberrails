@@ -1,0 +1,69 @@
+Copyright (c) 2006 Daniel Owsianski  (daniel-at-jarmark-d0t-org)
+
+Rails framework default configuration way is, as we all know, 
+flexible and simple at the same time. Troubles begins when Your 
+application starts to grow - some form of app specific configuration 
+is then required to keep all as DRY as possible.
+
+AppConfig plugin provides a convenient way for configuration 
+application wide settings. Extra custom files in config/ or other 
+unusual configuration hacks are no longer needed. AppConfig extends 
+Rails configuration process in a way that allows to setup application
+specific options within default configuration block.
+
+== Installation:
+It’s been posted on the Rails Plugin wiki page, so theoretically 
+You could install it with:
+
+	$ script/plugin discover
+	$ script/plugin install app_config
+
+Otherwise You can install directly from the repository:
+
+	$ script/plugin install http://svn.jarmark.org/rails/app_config
+
+*NOTE*: because AppConfig modifies Rails configuration internals,
+must be included *before* Rails::Initializer#run.
+If You are using Rails v1.1+ this step is taken *automatically* during
+installation. Otherwise add the following line to conf/environment.rb file:
+	require 'plugins/app_config/lib/configuration'
+(somewhere between line 'require File.join(File.dirname(__FILE__), 'boot')
+and 'Rails::Initializer.run')
+
+== Usage
+You can specify app-wide settings in configuration file(s)
+using ’app_config’ prefix e.g. environment.rb:
+	Rails::Initializer.run do |config|
+	...
+	   # --- My killer-app specific settings:
+	   config.app_config.my_key = 'my value'
+	   config.app_config.boot_time = Time.now
+	   config.app_config.default_mail_subject = '[appconfig] '
+	   config.app_config.my_hash = {:a=>1, :b=>2}
+	...
+
+but also in e.g. environment/development.rb
+	...
+	config.app_config.default_message = "I'm now in development mode..."
+	...
+
+Access to previously configured settings from within application 
+code is also dead easy:
+
+	AppConfig.my_key
+	AppConfig[:my_key]
+	AppConfig['my_key']
+	AppConfig.param('my_key')
+	AppConfig.param(:my_key)
+	AppConfig.param('my_key', 'value if my_key is nil')
+	AppConfig.param(:my_key)do
+	 ... #executed when my_key is nil
+	end
+
+Happy (re)configurations!
+
+Author:: Daniel Owsianski, (daniel-at-jarmark-d0t-org)
+Version:: 0.1
+Home page:: http://jarmark.org/projects/app-config/
+License::  Copyright (c) 2006 Daniel Owsiañski.
+           Released under MIT-LICENCE (included).

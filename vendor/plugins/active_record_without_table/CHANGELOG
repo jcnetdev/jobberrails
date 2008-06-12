@@ -1,0 +1,7 @@
+[15 September 2007]
+
+* Update for new attribute implementation. Require Rails >= r7315.
+
+[27 April 2007]
+
+* Correctly cache class instance variables containing column information [Reported by Nils Jonsson]

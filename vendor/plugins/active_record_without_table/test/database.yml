@@ -1,0 +1,6 @@
+mysql:
+  :adapter: mysql
+  :host: localhost
+  :username: root
+  :password: moose
+  :database: rails_plugin_test
