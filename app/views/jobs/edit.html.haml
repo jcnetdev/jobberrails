@@ -1,6 +1,9 @@
 .page-content
-  = partial "jobs/parts/stepbar", :step => 1
-  
+  .steps
+    #step_1
+      Edit Job Post
+  = clear_tag :br
+
   - unless @job.errors.empty?
     .validation-failure
       = image_tag "icon-delete.png", :style => "vertical-align: -3px"
@@ -9,10 +12,10 @@
   - form_for @job, :html => {:id => "publish_form", :class => "job-form"} do |f|
     
     = partial "jobs/parts/fields", :f => f
-    
         
     %fieldset.actions
-      = submit_tag "Step 2: Verify ad", :id => "submit"
-    
+      = submit_tag "Save Changes", :id => "submit"
+      or 
+      = link_to "cancel", job_url(@job)
+
     %fieldset.hidden
-      

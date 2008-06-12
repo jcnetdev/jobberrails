@@ -48,17 +48,17 @@
     
     HandleLocationOutside: function()
     {
-      if($("#location_outside").is(":visible"))
+      if($("#outside_location").is(":visible"))
       {
         $("#job_location_id").removeAttr("disabled");
-        $("div#location_outside").hide();
+        $("div#outside_location").hide();
         $("a#other_location_label").html("other");
       }
       else
       {
         $("#job_location_id").attr("disabled", "disabled");
-        $("div#location_outside").show();
-        $("#job_location_outside").focus();
+        $("div#outside_location").show();
+        $("#job_outside_location").focus();
         $("a#other_location_label").html("pick one from the list");
       }
     },

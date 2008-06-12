@@ -350,25 +350,25 @@ table/job-posts td.time-posted img, table/job-posts td.applicants img {
 }
 
 
-#job-details {
+#job_details {
   padding: 10px 0;
   margin: 0;
 }
-  #job-details h2 {
+  #job_details h2 {
     margin: 0 0 10px 0;
     color: #0099CC;
     font-weight: normal;
     font-size: 26px;
     line-height: 1.2;
   }
-  #job-details .label {
+  #job_details .label {
     color: #555;
     font-weight: bold;
   }
-  #job-details .fading {
+  #job_details .fading {
     color: #aaa;
   }
-  #job-details ul {
+  #job_details ul {
     margin: 0 0 10px 15px;
     list-style-type: disc;
   }
@@ -399,7 +399,7 @@ table/job-posts td.time-posted img, table/job-posts td.applicants img {
   margin-bottom: 7px;
 }
 
-#old-ad {
+.old-ad {
   margin-bottom: 10px;
   padding: 5px;
   background-color: #ffff88;
@@ -431,42 +431,42 @@ span.la {
 .step-active {
   color: #fff;
 }
-#publish_form {}
-  #publish_form fieldset, #promo_form fieldset {
+.job-form {}
+  .job-form fieldset, #promo_form fieldset {
     background-color: #f5f5f5;
     border: 1px solid #ccc;
     margin: 0 0 5px 0;
     padding: 10px;
   }
-  #publish_form fieldset legend {
+  .job-form fieldset legend {
     font-weight: bold;
     color: #555;
     font-size: 12px;
   }
-  #publish_form input, #publish_form textarea, #frm-send-to-friend input, #frm-send-edit-link input, #apply-online input, #apply-online textarea, #promo_form input {
+  .job-form input, .job-form textarea, #frm-send-to-friend input, #frm-send-edit-link input, #apply_online input, #apply_online textarea, #promo_form input {
     border: 1px solid #ccc;
     padding: 5px;
     font-size: 12px;
     font-family: Helvetica, Arial, sans-serif;
   }
-  #publish_form input:focus, #search input:hover, #publish_form textarea:focus, #search textarea:hover, #frm-send-to-friend input:focus, #frm-send-to-friend input:hover, #frm-send-edit-link input:focus, #frm-send-edit-link input:hover, #apply-online input:focus, #apply-online input:hover, #apply-online textarea:focus, #apply-online textarea:hover, #promo_form input:focus, #promo_form input:hover {
+  .job-form input:focus, #search input:hover, .job-form textarea:focus, #search textarea:hover, #frm-send-to-friend input:focus, #frm-send-to-friend input:hover, #frm-send-edit-link input:focus, #frm-send-edit-link input:hover, #apply_online input:focus, #apply_online input:hover, #apply_online textarea:focus, #apply_online textarea:hover, #promo_form input:focus, #promo_form input:hover {
     border: 1px solid #7F635F;
   }
-  #publish_form input#submit, #send-to-friend input#submit, #frm-send-edit-link input#submit, #apply-online input#submit, #promo_form input#submit {
+  .job-form input#submit, #send-to-friend input#submit, #frm-send-edit-link input#submit, #apply_online input#submit, #promo_form input#submit {
     background-color: #0099CC;
     color: #fff;
     border: 1px solid #009988;
     cursor: pointer;
     cursor: hand;
   }
-    #publish_form input#submit:hover, #send-to-friend input#submit:hover, #apply-online input#submit:hover, #promo_form input#submit:hover {
+    .job-form input#submit:hover, #send-to-friend input#submit:hover, #apply_online input#submit:hover, #promo_form input#submit:hover {
       background-color: #00aaee;
     }
-  #publish_form label.small {
+  .job-form label.small {
     color: #555;
     font-size: 12px;
   }
-  #publish_form input.no-border {
+  .job-form input.no-border {
     border: 0;
   }
   
@@ -481,7 +481,7 @@ td.register-label {
 }
 
 
-#apply-online {
+#apply_online {
   background-color: #f6f6f6;
   padding: 10px;
   width: 735px;
@@ -630,7 +630,7 @@ div.not-ok-response {
   color: red;
 }
 
-#location_outside {
+#outside_location {
   margin-top: 5px;
 }
 
@@ -638,7 +638,7 @@ div.not-ok-response {
   font-size: 11px;
 }
 
-#job-description {
+.job-description {
   border-top: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
   padding: 10px 0 10px 0;
@@ -731,7 +731,7 @@ h4 {
   div#sort-by-type a:hover { background: #fff; }
   
   
-#applied-to-job {
+.applied-to-job {
   float: right;
   background: url(/images/bg-applied.png) no-repeat;
   color: #333;
@@ -741,7 +741,7 @@ h4 {
   text-align: center;
   padding: 4px 0 0 0;
 }
-  #applied-to-job p {
+  .applied-to-job p {
     font-size: 11px;
   }
   

@@ -37,6 +37,27 @@ class JobsController < ApplicationController
     @job = Job.find(params[:id])
   end
 
+  def verify
+    @job = Job.find(params[:id])
+    
+    # todo:
+    # add permission checking here
+    
+    if request.put?
+      @job.verified = true
+      @job.save!
+      
+      redirect_to confirm_job_url(@job)
+    end
+  end
+  
+  def confirm
+    @job = Job.find(params[:id])
+    
+    # todo:
+    # add permission checking here
+  end
+
   # POST /jobs
   # POST /jobs.xml
   def create
@@ -45,7 +66,7 @@ class JobsController < ApplicationController
     respond_to do |format|
       if @job.save
         flash[:notice] = 'Job was successfully created.'
-        format.html { redirect_to(@job) }
+        format.html { redirect_to verify_job_url(@job) }
         format.xml  { render :xml => @job, :status => :created, :location => @job }
       else
         format.html { render :action => "new" }
@@ -58,6 +79,9 @@ class JobsController < ApplicationController
   # PUT /jobs/1.xml
   def update
     @job = Job.find(params[:id])
+    
+    # todo:
+    # add permission checking here
 
     respond_to do |format|
       if @job.update_attributes(params[:job])

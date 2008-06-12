@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20080612085600) do
+ActiveRecord::Schema.define(:version => 20080612103656) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(:version => 20080612085600) do
     t.string   "url"
     t.string   "apply"
     t.boolean  "is_temp"
-    t.boolean  "is_active"
+    t.boolean  "is_active",                      :default => false
     t.string   "outside_location"
     t.string   "poster_email"
     t.boolean  "apply_online"
@@ -58,6 +58,10 @@ ActiveRecord::Schema.define(:version => 20080612085600) do
     t.integer  "location_id",      :limit => 11
     t.integer  "job_type_id",      :limit => 11
     t.integer  "category_id",      :limit => 11
+    t.boolean  "verified",                       :default => false
+    t.boolean  "confirmed",                      :default => false
+    t.text     "description_html"
+    t.string   "formatting_type"
   end
 
   create_table "locations", :force => true do |t|

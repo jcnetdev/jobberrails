@@ -7,7 +7,7 @@ class CreateJobs < ActiveRecord::Migration
       t.string :url
       t.string :apply
       t.boolean :is_temp
-      t.boolean :is_active
+      t.boolean :is_active, :default => false
       t.string :outside_location
       t.string :poster_email
       t.boolean :apply_online

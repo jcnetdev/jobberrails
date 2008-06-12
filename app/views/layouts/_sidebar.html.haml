@@ -15,10 +15,10 @@
   - if current_page?(root_url)
     = br
     #stats
-      %strong== #{Job.count} total jobs
+      %strong== #{Job.active.count} total jobs
       = br
       - Category.list.each do |category|
-        %strong= category.jobs.size
+        %strong= category.jobs.active.size
         for
         = link_to category.name, category_url(category)
         = br

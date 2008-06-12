@@ -5,12 +5,15 @@ class Job < ActiveRecord::Base
   
   has_many :job_applicants
 
-  validates_presence_of :name
+  named_scope :active, :conditions => {:is_active => true}
+  
+  validates_presence_of :title
   validates_presence_of :description
 
   validates_presence_of :company
   validates_presence_of :poster_email
-
+  
+  before_save :format_fields
   
   # create a default populated job
   def self.new_default(init_values = {})
@@ -25,5 +28,41 @@ class Job < ActiveRecord::Base
       "pick one from the list"
     end
   end
-
+  
+  # get a string representation of where the job is located
+  def located_at
+    return @located_at if @located_at
+    
+    # return outside location if set
+    unless self.outside_location.blank?
+      @located_at = self.outside_location
+      return @located_at
+    end
+    
+    # return location if applicable
+    if self.location
+      @located_at = self.location.name
+      return @located_at
+    end
+    
+    @located_at = "Anywhere"
+    return @located_at
+  end
+  
+  protected
+  def format_fields
+    self.description_html = format_html(self.description)
+  end
+  
+  def format_html(content)
+    case self.formatting_type
+    when "html"
+      content
+    when "simple"
+      simple_format(content)
+    else # Default to Textile
+      RedCloth.new(content).to_html(:textile)
+    end
+  end
+  
 end

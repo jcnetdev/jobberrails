@@ -69,6 +69,7 @@ Rails::Initializer.run do |config|
   # Gem Requirements
   config.gem "haml", :version => ">= 2.0.0"
   config.gem "will_paginate", :version => ">= 2.2.2"
+  config.gem "RedCloth", :version => ">= 3.0.4"
   
   # Configuration Settings
   config.app_config.site_name = "JobberRails"

@@ -1,0 +1,16 @@
+.page-content
+  = partial "jobs/parts/stepbar", :step => 2
+  = partial "jobs/parts/details", :job => @job, :confirm => true
+  
+  - form_for @job, :url => verify_job_url(@job), :html => {:id => "verify_form", :class => "job-form"} do |f|
+    = f.hidden_field :verified, :value => "true"
+    
+    %fieldset
+      .right
+        .suggestion
+          If you changed your mind, you may
+          = link_to "cancel posting this ad.", job_url(@job), :method => :delete, :confirm => "This will cancel and clear the job information you've entered so far. Continue?"
+        
+      = submit_tag "Publish", :id => "submit"
+      &nbsp;or&nbsp;
+      = link_to "Edit It", edit_job_url

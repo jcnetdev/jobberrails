@@ -24,7 +24,9 @@ module JobsHelper
   
   # display icon for job type
   def job_type_image(job_type)
-    image_tag "job-types/#{job_type.value}.png", :alt => job_type.value
+    if job_type
+      image_tag "job-types/#{job_type.value}.png", :alt => job_type.value
+    end
   end
   
 end

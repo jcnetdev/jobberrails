@@ -1,6 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
 
-  map.resources :jobs
+  map.resources :jobs, :member => {:verify => :any, :apply => :post, :confirm => :any}
   map.resources :categories
   map.resource :search
 

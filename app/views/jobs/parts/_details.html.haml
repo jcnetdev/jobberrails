@@ -1,0 +1,54 @@
+-# Set Partial Parameters Defaults
+- job = nil unless local_assigns[:job]
+- confirm = false unless local_assigns[:confirm]
+
+- if job
+  #job_details
+    -# display application confirmation (if applicable)
+    - if job.id == session[:applied_id]
+      .apply-status-ok
+        Congratulations, your application has been sent! Best of luck to you!
+  
+    -# display job outdated warning if applicable
+    - if job.updated_at < 40.days.ago
+      .old-ad
+        This job ad has been posted over 40 days ago...
+  
+    -# show applicants
+    - unless confirm
+      .applied-to-job
+        = job.job_applicants.size
+        %p
+          - if job.applicants.size != 1
+            applicants
+          - else
+            applicant
+  
+    -# show job title
+    %h2
+      = job_type_image(job.job_type)
+      = job.title
+  
+    -# show job location
+    %p
+      %span.fading at
+      - unless job.url.blank? or job.url == "http://"
+        = link_to job.company, job.url
+      - else
+        %strong job.company
+    
+      - if job.located_at == "Anywhere"
+        %strong= job.located_at
+      - else
+        %span.fading in
+        %strong= job.located_at
+    
+    -# show job description
+    .job-description
+      = job.description_html
+    = br
+    
+    
+    -# show job apply form
+    - if !confirm and job.apply_online?
+      = partial "jobs/parts/apply_form", :job => job
