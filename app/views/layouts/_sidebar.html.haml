@@ -1,0 +1,25 @@
+#sidebar
+  -# display home link (if not already there)
+  - unless current_page?(root_url)
+    = link_to "Home", root_url
+    = br
+
+  -# display list of last viewed jobs
+  - unless last_viewed_jobs.empty?
+    %h4 Seen Recently
+    %ul
+      - last_viewed_jobs.each do |job|
+        %li= link_to "&raquo; #{job.title}", job_url(job)
+        
+  
+  -# show stats
+  - if current_page?(root_url)
+    = br
+    #stats
+      %strong== #{Job.count} total jobs
+      = br
+      - Category.list.each do |category|
+        %strong= category.jobs.size
+        for
+        = link_to category.name, category_url(category)
+        = br

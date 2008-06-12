@@ -1,0 +1,5 @@
+#categories
+  %ul
+    - Category.list.each do |category|
+      = category_nav_item(category)
+  = clear
