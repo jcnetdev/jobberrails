@@ -78,3 +78,4 @@ Rails::Initializer.run do |config|
 
   config.app_config.search_suggestions = '(e.g. "ajax", "designer, london", "php, chicago")'
 end
+

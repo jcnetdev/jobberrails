@@ -7,7 +7,7 @@
   -# show the popular jobs
   - unless Job.popular_jobs.empty?
     = br
-    %h3 Most Popular Jobs
+    %h3 Most Popular Job Posts
     = partial "jobs/parts/post_table", :jobs => Job.popular_jobs, :show_applicants => true
 
   - if Job.popular_jobs.blank? and Job.recent_jobs.blank?

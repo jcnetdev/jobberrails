@@ -1,13 +1,12 @@
 #box
   #search
-    - form_tag search_url, :id => "search_form", :method => :post do
+    - form_tag search_url, :id => "search_form", :method => :get do
       %fieldset
         = text_field_tag :keywords, params[:keywords], :id => "keywords", :class => "example", :maxlength => 30 , :title => "search for a job"
+        - if @category
+          = hidden_field_tag :cat_id, @category.id
         %span#indicator.hidden= image_tag "ajax-loader.gif", :alt => ""
         %label.suggestionTop= AppConfig.search_suggestions
 
   .addJob
     = link_to "Post a New Job", new_job_url(:cat_id => @category), :class => "add", :title => "Post a New Job"
-  
-  
-    

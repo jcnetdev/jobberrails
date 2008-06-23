@@ -35,10 +35,10 @@
       - unless job.url.blank? or job.url == "http://"
         = link_to job.company, job.url
       - else
-        %strong job.company
+        %strong= job.company
     
       - if job.located_at == "Anywhere"
-        %strong= job.located_at
+        %strong== (#{job.located_at})
       - else
         %span.fading in
         %strong= job.located_at

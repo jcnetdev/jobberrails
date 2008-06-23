@@ -4,6 +4,7 @@ JobberRails is a conversion of the excellent open source php web app, JobberBase
 
 www.jobberrails.com
 
+
 == Install Instructions
 
 1) Set up Database (database.yml)
@@ -12,12 +13,63 @@ www.jobberrails.com
 
 3) Start server
 
- 
+
 == Hosted Version
 
 The latest version is currently running on a MorphExchange developer account here:
 http://jobberrails.morphexchange.com
 
+
+== Current Version
+
+v0.0.0.0.1. Very incomplete. Basically its the result of me hacking for 4 hours and seeing how far I get. 
+
+So far it has Job Posting, listing, and categorization.
+
+v1.0 will include all the functionality that currently exists in JobberBase
+
+
+== Help
+
+If you want to help improve JobberRails, fork the code on github and start making changes & converting features. 
+I'll be extremely happy to merge your changes back in and give you credit for your work in the changelog.
+
+Please make sure to use spaces (no tabs), and an indent width of 2.
+
+
+== Maintainers
+
+--
+Jacques Crocker
+railsjedi@gmail.com
+www.railsjedi.com
+
+Handled initial project creation.
+
+-- 
+Tyler Crocker
+neorails@gmail.com
+www.neorails.com
+
+Completed Search, RSS, and Admin Sections
+
+--
+[Your Name Here]
+[if you start coding now...]
+
+--
+For more awesome Open Source Rails applications go to www.opensourcerails.com.
+
+
+== Technologies Used
+
+Haml / Sass (html and css)
+JQuery (javascript framework)
+AttachmentFu (Rails Plugin)
+BetterPartials (Rails Plugin)
+BackgroundJob (Rails Plugin)
+SeedFu (Rails Plugin)
+AppConfig (Rails Plugin)
 
 
 == S3 Support for Resumes
@@ -41,29 +93,7 @@ To store uploaded resume files in S3, update job_applicant.rb changing the :stor
       secret_access_key:
 
 
-== Current Version
-
-v0.0.0.0.1. Very incomplete. Basically its the result of me hacking for 4 hours and seeing how far I get. 
-
-So far it has Job Posting, listing, and categorization.
-
-v1.0 will include all the functionality that currently exists in JobberBase
-
-
-== Help
-
-If you want to help convert JobberRails, fork the code on github and start making changes. 
-I'll be extremely happy to merge your changes back in and give you credit for your work in the changelog.
-
-== Maintainer Info
-
-Jacques Crocker
-railsjedi@gmail.com
-www.railsjedi.com
-
-For more excellent Open Source Rails applications go to www.opensourcerails.com.
-
 == Credits
 
-All credit for this app goes to the fine folks over at JobberBase who put together a slick interface for 
+All credit for this app goes to the fine folks over at JobberBase who put together the slick looking interface for 
 a vertical job board. See them at www.jobberbase.com

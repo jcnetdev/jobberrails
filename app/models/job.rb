@@ -5,8 +5,15 @@ class Job < ActiveRecord::Base
   
   has_many :job_applicants
 
+  # scope out active jobs
   named_scope :active, :conditions => {:is_active => true}
-  
+    
+  # add search scope
+  named_scope :with_content, lambda{ |query|
+    like = "%#{query}%"
+    return {:conditions => ["title LIKE ? OR description LIKE ? OR company LIKE ? OR outside_location LIKE ?", like, like, like, like]}
+  }
+    
   validates_presence_of :title
   validates_presence_of :description
 

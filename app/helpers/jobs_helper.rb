@@ -15,7 +15,7 @@ module JobsHelper
       
       if job.location == "Anywhere"
         puts ", #{job.location}"
-      else
+      elsif !job.location.blank?
         haml_tag :span, "in", :class => "la"
         puts " #{job.location}"
       end

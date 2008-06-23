@@ -39,13 +39,6 @@
 
     },
     
-    PerformSearch: function(url)
-    {
-      clearTimeout(window.search_timer);  
-      $('.job-listings').load(url + encodeURIComponent($('#keywords').fieldValue()) + '/'); 
-      $("#indicator").hide(); 
-    },
-    
     HandleLocationOutside: function()
     {
       if($("#outside_location").is(":visible"))
@@ -61,19 +54,6 @@
         $("#job_outside_location").focus();
         $("a#other_location_label").html("pick one from the list");
       }
-    },
-    
-    CopyPasteUrl: function()
-    {
-      if (window.location.href.search("#") != -1)
-      {
-        var url = window.location.href.substring(0, window.location.href.length - 7);
-      }
-      else
-      {
-        var url = window.location.href;
-      }
-      document.getElementById("apply_url").value = url;
     },
     
     SendToFriend: {
@@ -123,13 +103,14 @@
         }
       });
     },
+    
     DeactivateLink: function()
     { 
       
       var url = Jobber.jobber_admin_url+'deactivate/';
       Jobber.Deactivate(url, Jobber.job_id);
-      
     },
+    
     ActivateLink: function()
     { 
       
@@ -137,6 +118,7 @@
       Jobber.Activate(url, Jobber.job_id, 0);
       
     },
+    
     Activate: function(url, job_id, is_first_page)
     {
       $.ajax({
@@ -183,27 +165,6 @@
           }
         }
       });
-    },
-    
-    Delete: function(url, job_id)
-    {
-      if(confirm('Are you sure you want to delete this post?'))
-      {
-        $.ajax({
-          type: "POST",
-          url: url,
-          data: "job_id=" + job_id,
-          success: function(msg) {
-            if (msg != "0")
-            {
-              var currentJobId = 'item'+job_id;
-              $("#"+currentJobId).css({ display: "none" });
-            }
-          }
-        });
-      }
-      else
-        return false;
     }
   }
 })(jQuery);

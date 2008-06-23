@@ -2,7 +2,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :jobs, :member => {:verify => :any, :apply => :post, :confirm => :any}
   map.resources :categories
-  map.resource :search
+  map.resource :search, :controller => "Search"
 
   # map.namespace :admin do |admin|
   #   # Directs /admin/jobs/* to Admin::JobsController (app/controllers/admin/jobs_controller.rb)

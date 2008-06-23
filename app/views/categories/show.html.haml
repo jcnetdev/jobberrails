@@ -9,12 +9,24 @@
     %h2
       Jobs for
       = @category.name
+      - unless params[:job_type].blank?
+        (showing
+        == #{params[:job_type]})
     
     = partial "jobs/parts/post_table", :jobs => @jobs
     
     - if @jobs.empty?
       #no_ads
         There are currently no available jobs for 
-        %strong== #{@category.name}.
+        - if params[:job_type]
+          %strong== #{params[:job_type]}
+          in
+          %strong== #{@category.name}.
+          = br
+          %strong= link_to "View All in #{@category.name}", :job_type => nil
+          = br
+        - else
+          %strong== #{@category.name}.
+
         = br
         = link_to "Post a new job", new_job_url("job[category_id]" => "#{@category.id}")
