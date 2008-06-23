@@ -7,6 +7,8 @@ class Job < ActiveRecord::Base
 
   # scope out active jobs
   named_scope :active, :conditions => {:is_active => true}
+
+  named_scope :latest, :order => "created_at DESC"
     
   # add search scope
   named_scope :with_content, lambda{ |query|
@@ -29,11 +31,11 @@ class Job < ActiveRecord::Base
   end
   
   def self.recent_jobs
-    active.find(:all, :order => "created_at DESC", :limit => 7)
+    active.latest(:limit => 7)
   end
   
   def self.popular_jobs
-    active.find(:all, :order => "job_applicants_size DESC", :limit => 7)
+    active(:order => "job_applicants_size DESC", :limit => 7)
   end
   
   # switch label used for html forms
@@ -63,6 +65,22 @@ class Job < ActiveRecord::Base
     
     @located_at = "Anywhere"
     return @located_at
+  end
+  
+  def feed_title
+    output = ""
+    output << "[#{self.job_type.name}] ".downcase if self.job_type
+    
+    output << "#{self.title}"
+    output << " at #{self.company}" unless self.company.blank?
+  end
+  
+  def feed_html
+    output = ""
+    output << "<strong>Location: #{self.located_at}</strong><br />"
+    output << "<strong>URL:</strong> <a href='#{self.url}'>#{self.url}</a><br />"
+    output << "<strong>Description:</strong><br /> #{self.description_html}"
+
   end
   
   protected

@@ -71,9 +71,9 @@ Rails::Initializer.run do |config|
   config.gem "will_paginate", :version => ">= 2.2.2"
   
   # Configuration Settings
-  config.app_config.site_name = "JobberRails"
+  config.app_config.site_name = "jobberRails"
   config.app_config.site_url = "http://www.jobberrails.com"
-  config.app_config.from_email = "JobberRails<jobberrails@gmail.com>"
+  config.app_config.from_email = "jobberRails<jobberrails@gmail.com>"
   config.app_config.require_email_activation = false
 
   config.app_config.search_suggestions = '(e.g. "ajax", "designer, london", "php, chicago")'

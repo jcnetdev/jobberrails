@@ -29,4 +29,9 @@ module JobsHelper
     end
   end
   
+  
+  def apply_html(job)
+    "<br />"+ link_to("Apply Now!", job)+"<br /><br />"
+  end
+  
 end

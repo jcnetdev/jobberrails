@@ -2,10 +2,11 @@ class JobsController < ApplicationController
   # GET /jobs
   # GET /jobs.xml
   def index
-    @jobs = Job.find(:all)
+    @jobs = Job.active(:order => "created_at DESC", :limit => 50)
 
     respond_to do |format|
       format.html # index.html.erb
+      format.atom { render :layout => false }
       format.xml  { render :xml => @jobs }
     end
   end

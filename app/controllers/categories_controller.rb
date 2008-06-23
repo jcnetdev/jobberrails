@@ -7,12 +7,12 @@ class CategoriesController < ApplicationController
     @category = current_category
     @job_type = current_job_type
     
-    # get jobs
+    # add filter
     if @job_type
-      @jobs = @category.jobs.active.find(:all, :conditions => {:job_type_id => @job_type.id})
-    else
-      @jobs = @category.jobs.active
+      conditions = {:conditions => {:job_type_id => @job_type.id}}
     end
+
+    @jobs = @category.jobs.active.latest(conditions)
   end
   
   protected
