@@ -12,7 +12,7 @@ Working:
 - Job Posting
 - Categories
 - Search
-- RSS FEEDS
+- Feeds
 
 Coming Soon:
 - Apply Now
@@ -21,7 +21,11 @@ Coming Soon:
 - Email Verification
 
 v1.0 will include all the functionality that currently exists in JobberBase
+
 v2.0 will include additional functionality not currently in JobberBase
+
+If you're interested in JobberRails 2.0, go here to recommend features for us to implement:
+http://jobberrails.crowdsound.com/
 
 
 == Install Instructions
