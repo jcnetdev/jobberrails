@@ -5,6 +5,25 @@ jobberRails is a conversion of the excellent open source php web app, JobberBase
 www.jobberrails.com
 
 
+== Current Version
+v0.1 
+
+Working:
+- Job Posting
+- Categories
+- Search
+- RSS FEEDS
+
+Coming Soon:
+- Apply Now
+- Ideal Job Form
+- Admin Tools
+- Email Verification
+
+v1.0 will include all the functionality that currently exists in JobberBase
+v2.0 will include additional functionality not currently in JobberBase
+
+
 == Install Instructions
 
 1) Set up Database (database.yml)
@@ -18,16 +37,6 @@ www.jobberrails.com
 
 The latest version is currently running on a MorphExchange developer account here:
 http://jobberrails.morphexchange.com
-
-
-== Current Version
-
-v0.0.0.0.1. Very incomplete. Basically its the result of me hacking for 4 hours and seeing how far I get. 
-
-So far it has Job Posting, listing, and categorization.
-
-v1.0 will include all the functionality that currently exists in JobberBase
-
 
 == Help
 
