@@ -48,7 +48,13 @@
       = job.description_html
     = br
     
-    
     -# show job apply form
     - if !confirm and job.apply_online?
-      = partial "jobs/parts/apply_form", :job => job
+      #apply_online_now= link_to "&raquo; Apply now", "#"
+      - if @job_applicant and @job_applicant.errors.size > 0
+        .validation-failure
+          = image_tag "icon-exclamation.png"
+          Unfortunately, your application could not be sent. Please check the form. Also, we only allow 1 application every 10 minutes.
+
+      #apply_online{hidden_unless(@job_applicant)}
+        = partial "jobs/parts/apply_form", :job => job, :job_applicant => @job_applicant

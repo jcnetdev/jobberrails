@@ -296,7 +296,7 @@ table/job-posts td.time-posted img, table/job-posts td.applicants img {
 .withErrors
 {
   padding-right: 20px;
-  background-image: url(/images/icon-delete.png);
+  background-image: url(/images/icon-exclamation.png);
   background-repeat: no-repeat;
   background-position: right center;
 }

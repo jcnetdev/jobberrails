@@ -7,9 +7,6 @@ $j(document).ready(function()
     $j('#title').focus();  
   }
 
-  // This lame validator plugin doesnt work
-  // bassistance is a jackass
-  // -----------
   // if (BrowserDetect.browser != "Explorer")
   // {
   //   $j("#publish_form").validate({

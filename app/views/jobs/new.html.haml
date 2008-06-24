@@ -3,7 +3,7 @@
   
   - unless @job.errors.empty?
     .validation-failure
-      = image_tag "icon-delete.png", :style => "vertical-align: -3px"
+      = image_tag "icon-exclamation.png", :style => "vertical-align: -3px"
       Please revise the form...
   
   - form_for @job, :html => {:id => "publish_form", :class => "job-form"} do |f|

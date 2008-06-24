@@ -1,41 +1,32 @@
-- job = nil unless local_assigns[:job]
+- job = @job unless local_assigns[:job]
+- job_applicant = JobApplicant.new_default unless local_assigns[:job_applicant]
 
-- if job
-  #apply_online_now= link_to "&raquo; Apply now", "#"
-  - if job.id == session[:apply_error_id]
-    .validation-failure
-      = image_tag "icon-delete.png"
-      Unfortunately, your application could not be sent. Please check the form. Also, we only allow 1 application every 10 minutes.
-  
-  #apply_online{hidden_if(job.id != session[:apply_error_id])}
-    - form_for(@job_applicant || JobApplicant.new_default, |
-                :url => apply_job_url(@job), |
-                :html => {:method => :post, :id => "apply_online_form", :multipart => true}) do |f| |
-      
-      %table
-        %tr
-          %td= f.label :name
-          %td= f.text_field :name, :size => 30, :maxlength => 50
-        %tr
-          %td= f.label :email
-          %td= f.text_field :email, :size => 30, :maxlength => 50
-        %tr
-          %td{:valign => "top"}= f.label :message
-          %td= f.text_area :message, :size => "60x15"
-        %tr
-          %td{:valign => "top"}
-            %label Upload Resume/CV
-          %td
-            = f.file_field :uploaded_data
-            .suggestion
-              Max. 3 MB. Recommended formats: PDF, RTF, DOC, ODT.
-        %tr
-          %td{:colspan => "2"}= nbsp;
-        
-        %tr
-          %td{:colspan => "2"}
-            = submit_tag "Send my Application"
-            or
-            = link_to "cancel", "#", :class => "cancel"
-    
-    
+- if job and job_applicant
+  - form_for((job_applicant), :url => apply_job_url(job), |
+              :html => {:method => :post, :id => "apply_online_form", :multipart => true}) do |f| |
+
+    %table
+      %tr
+        %td= f.label :name
+        %td= f.text_field :name, :size => 30, :maxlength => 50
+      %tr
+        %td= f.label :email
+        %td= f.text_field :email, :size => 30, :maxlength => 50
+      %tr
+        %td{:valign => "top"}= f.label :message
+        %td= f.text_area :message, :size => "60x15"
+      %tr
+        %td{:valign => "top"}
+          %label Upload Resume/CV
+        %td
+          = f.file_field :uploaded_data
+          .suggestion
+            Max. 3 MB. Recommended formats: PDF, RTF, DOC, ODT.
+      %tr
+        %td{:colspan => "2"}= nbsp;
+
+      %tr
+        %td{:colspan => "2"}
+          = submit_tag "Send my Application"
+          or
+          = link_to "cancel", "#", :class => "cancel"

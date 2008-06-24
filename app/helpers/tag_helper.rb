@@ -47,6 +47,14 @@ module TagHelper
     end
   end
 
+  def hidden_unless(condition)
+    unless condition
+      {:style => "display:none"}
+    else
+      {}
+    end
+  end
+
   def add_class_if(condition, css_class)
     if condition
       {:class => css_class}
