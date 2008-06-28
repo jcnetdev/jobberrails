@@ -31,7 +31,6 @@ class JobsController < ApplicationController
       session[:applied_id] = @job.id
       redirect_to job_url(@job)
     else
-      debugger
       render :action => "show"
     end
   end

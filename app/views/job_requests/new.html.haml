@@ -1,0 +1,40 @@
+.page-content
+  %h3.page-heading Set up your ideal job!
+  %p Let us know what your ideal job is...
+  = br
+
+  - if @job_hunter.errors.size > 0
+    .validation-failure
+      = image_tag "exclamation.png", :style => "vertical-align: -3px"
+      There were a few problems. Please correct the fields labeled in <strong>red</strong>.
+    = br
+  
+  - form_for @job_hunter, :url => job_requests_url, :html => {:method => :post, :class => "job-form"} do |f|
+    %fieldset
+      %legend What's your ideal job?
+      - JobParamCategory.options.each_with_index do |category, index|
+        %div{:id => "req_col#{index}"}
+          %strong= category.name
+          - category.job_params.each do |job_param|
+            = br
+            .req-params-item
+              - req_params = params["req_params"] || []
+              = check_box_tag "req_params[]", job_param.id, req_params.include?(job_param.id.to_s), :id => "param_#{job_param.id}"
+              %label.request-label{:for => "param_#{job_param.id}"}= job_param.param_value
+      
+    %fieldset
+      %legend Your info
+      %table{:border => "0", :cellspacing => "2", :cellpadding => "2"}
+        %tbody
+          %tr
+            %td.publish-label Name
+            %td
+              = f.text_field :name, :size => 40, :maxlength => 50
+          %tr
+            %td.publish-label Email
+            %td
+              = f.text_field :email, :size => 40, :maxlength => 255
+    
+    %fieldset
+      = submit_tag "Save", :class => "submit"
+      

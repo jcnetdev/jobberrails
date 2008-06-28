@@ -10,12 +10,7 @@ class JobApplicant < ActiveRecord::Base
   has_attachment :storage => :file_system,
                  # :storage => :s3,
                  :path_prefix => "public/attachments"
-                 # :content_type => ['application/pdf', 'application/msword', 'text/xml', 'text/plain']
                  
-
-  validates_as_attachment
-
-
   def self.new_default(init_values = {})
     self.new(init_values)
   end

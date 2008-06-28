@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20080612113710) do
+ActiveRecord::Schema.define(:version => 20080628140339) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -31,6 +31,35 @@ ActiveRecord::Schema.define(:version => 20080612113710) do
     t.integer  "size",         :limit => 11
     t.integer  "width",        :limit => 11
     t.integer  "height",       :limit => 11
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "job_hunters", :force => true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "job_hunters_job_params", :force => true do |t|
+    t.integer  "job_hunter_id", :limit => 11
+    t.integer  "job_param_id",  :limit => 11
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "job_param_categories", :force => true do |t|
+    t.string   "name"
+    t.integer  "position",   :limit => 11, :default => 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "job_params", :force => true do |t|
+    t.string   "job_param_category_id"
+    t.string   "param_value"
+    t.integer  "position",              :limit => 11, :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end

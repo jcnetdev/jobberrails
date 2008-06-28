@@ -296,7 +296,7 @@ table/job-posts td.time-posted img, table/job-posts td.applicants img {
 .withErrors
 {
   padding-right: 20px;
-  background-image: url(/images/icon-exclamation.png);
+  background-image: url(/images/exclamation.png);
   background-repeat: no-repeat;
   background-position: right center;
 }
@@ -691,7 +691,7 @@ h3.page-heading, div.page-heading {
   font-weight: normal;
   color: #fff;
   font-size: 16px;
-  height: 22px;
+  height: 21px;
   background: transparent url(/images/header-bg.png) no-repeat left;
 }
   h3.page-heading span {
@@ -861,11 +861,10 @@ label.request-label {
   line-height: 1.9;
 }
 
-#req-left { float: left; display: inline; width: 160px; }
-#req-middle { float: left; display: inline; width: 160px; margin-left: 30px; }
-#req-right { float: left; display: inline; width: 160px; margin-left: 30px; }
-#req-right2 { float: left; display: inline; width: 160px; margin-left: 30px; }
-#req-left input, #req-middle input, #req-right input, #req-right2 input { border: 0; }
+#req_col0 { float: left; display: inline; width: 160px; border: 0; }
+#req_col1 { float: left; display: inline; width: 160px; margin-left: 30px; border: 0; }
+#req_col2 { float: left; display: inline; width: 160px; margin-left: 30px; border: 0; }
+#req_col3 { float: left; display: inline; width: 160px; margin-left: 30px; border: 0; }
 
 #home-promo { background: url(/images/home-banner-bg.png) no-repeat; width: 757px; height: 66px; margin-top: 12px; text-align: center; padding-top: 8px; }
 #home-promo div { color: #0897C6; font-size: 20px; }
