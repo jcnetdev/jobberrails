@@ -377,25 +377,30 @@ table/job-posts td.time-posted img, table/job-posts td.applicants img {
     list-style-type: disc;
   }
 
-#job-bottom {
+#job_bottom {
   background-color: #f0f0f0;
-  padding: 2px;
+  padding:15px 8px 0px;
   font-size: 14px;
   height: 50px;
 }
 
-#number-views {
+#number_views {
   float: right;
   display: inline;
   font-size: 11px;
   color: #777;
 }
 
-#job-post-utils {
+#job_post_utils {
   float: left;
   display: inline;
   font-size: 11px;
   color: #888;
+}
+
+#job_post_utils #report_spam_response em{
+  font-style: normal;
+  color: orange;
 }
 
 #apply_online_now {

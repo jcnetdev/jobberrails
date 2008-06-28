@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20080628140339) do
+ActiveRecord::Schema.define(:version => 20080628140740) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -92,6 +92,8 @@ ActiveRecord::Schema.define(:version => 20080628140339) do
     t.text     "description_html"
     t.string   "formatting_type"
     t.integer  "job_applicants_count", :limit => 11, :default => 0
+    t.integer  "view_count",           :limit => 11, :default => 0
+    t.integer  "report_count",         :limit => 11, :default => 0
   end
 
   create_table "locations", :force => true do |t|

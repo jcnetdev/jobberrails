@@ -53,3 +53,21 @@
       #apply_online_now= link_to "&raquo; Apply now", "#"
       #apply_online{hidden_unless(@job_applicant)}
         = partial "jobs/parts/apply_form", :job => job, :job_applicant => @job_applicant
+    
+    #job_bottom
+      #job_post_utils
+        = link_to "&laquo; go back to the homepage", root_url
+        = br
+        Is this job ad fake?
+        = link_to "Report it!", "#", :onclick => "Jobber.ReportSpam('/jobs/#{job.id}/report_spam/', #{job.id}); return false;"
+        = nbsp*2
+        %span#report_spam_response
+        = br
+      #number_views
+        Published at: 
+        %strong= job.created_at.to_s(:post_listing_date)
+        = br
+        Viewed:
+        %strong= pluralize(job.view_count, "time")
+      = clear
+        

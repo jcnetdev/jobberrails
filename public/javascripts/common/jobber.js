@@ -88,18 +88,8 @@
         url: url,
         data: "job_id=" + job_id,
         success: function(msg) {
-          if (msg == "0")
-          {
-            var status = "Thank you for your intention, but your vote could not be registered.";
-            $("#report-spam-response").css({ color: "red" });
-          }
-          else
-          {
-            var status = "Thank you, your vote was registered and is highly appreciated!";
-            $("#frm-send-to-friend").clearForm();
-            $("#report-spam-response").css({ color: "green" });
-          }
-          $("#report-spam-response").html(status);
+          $("#report_spam_response").html(msg);
+          $("#report_spam_response").css({ color: "green" });
         }
       });
     },

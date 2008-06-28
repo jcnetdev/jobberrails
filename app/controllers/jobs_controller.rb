@@ -15,6 +15,7 @@ class JobsController < ApplicationController
   # GET /jobs/1.xml
   def show
     @job = Job.find(params[:id])
+    @job.increment!(:view_count)
     
     respond_to do |format|
       format.html # show.html.erb
@@ -27,14 +28,25 @@ class JobsController < ApplicationController
     
     @job_applicant = @job.job_applicants.build(params[:job_applicant])
     if @job_applicant.save
-      # flash[:success] = " Congratulations, your application has been sent! Best of luck to you!"
       session[:applied_id] = @job.id
       redirect_to job_url(@job)
     else
       render :action => "show"
     end
   end
-
+  
+  def report_spam
+    @job = Job.find(params[:id])
+    
+    if @job.id == session[:reported_id]
+      render :text => "<em>Your vote has already been registered. Thanks for voting.</em>"
+    else
+      @job.increment!(:report_count)
+      session[:reported_id] = @job.id
+      render :text => "Thank you, your vote was registered and is highly appreciated!"
+    end
+  end
+  
   # GET /jobs/new
   # GET /jobs/new.xml
   def new

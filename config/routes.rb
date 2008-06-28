@@ -3,7 +3,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :jobs, :member => {
                           :verify => :any, 
                           :apply => :post, 
-                          :confirm => :any
+                          :confirm => :any,
+                          :report_spam => :post
                         }
 
   map.resources :job_requests, :collection => {:success => :get}
