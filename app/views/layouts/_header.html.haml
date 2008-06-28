@@ -9,5 +9,6 @@
     = bull
     %li= link_to "Contact", "#"
   
+  = partial "layouts/flash_boxes"
   #the_feed
     = link_to image_tag("bt-rss.gif"), jobs_url(:format => "atom"), :title => "All Jobs Feed"

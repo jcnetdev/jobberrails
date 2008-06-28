@@ -35,7 +35,7 @@ class Job < ActiveRecord::Base
   end
   
   def self.popular_jobs
-    active(:order => "job_applicants_size DESC", :limit => 7)
+    active(:order => "job_applicants_count DESC", :limit => 7)
   end
   
   # switch label used for html forms

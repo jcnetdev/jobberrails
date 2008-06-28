@@ -1,34 +1,0 @@
-8
-
-dir
-249
-https://railsmade.unfuddle.com/svn/railsmade_sendcircle/blogcircle/vendor/plugins/attachment_fu/lib/technoweenie/attachment_fu
-https://railsmade.unfuddle.com/svn/railsmade_sendcircle
-
-
-
-2008-04-07T06:53:36.479703Z
-235
-railsmade_jacques
-
-
-svn:special svn:externals svn:needs-lock
-
-
-
-
-
-
-
-
-
-
-
-af4a705b-d754-4ebe-97be-e3339b3ce852
-
-processors
-dir
-
-backends
-dir
-

@@ -2,8 +2,17 @@
 - job_applicant = JobApplicant.new_default unless local_assigns[:job_applicant]
 
 - if job and job_applicant
+
+  - if job_applicant.errors.size > 0
+    .validation-failure
+      = image_tag "exclamation.png", :style => "vertical-align: -3px"
+      Unfortunately, your application could not be sent. Please check the form for missing information and resubmit. 
+    = br
+  
+
   - form_for((job_applicant), :url => apply_job_url(job), |
-              :html => {:method => :post, :id => "apply_online_form", :multipart => true}) do |f| |
+              :html => {:method => :post, :id => "apply_online_form", |
+                        :class => "job-form", :multipart => true}) do |f| |
 
     %table
       %tr
@@ -27,6 +36,6 @@
 
       %tr
         %td{:colspan => "2"}
-          = submit_tag "Send my Application"
+          = submit_tag "Send my Application", :class => "submit"
           or
           = link_to "cancel", "#", :class => "cancel"

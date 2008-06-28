@@ -15,10 +15,22 @@ class JobsController < ApplicationController
   # GET /jobs/1.xml
   def show
     @job = Job.find(params[:id])
-
+    
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @job }
+    end
+  end
+  
+  def apply
+    @job = Job.find(params[:id])
+    
+    @job_applicant = @job.job_applicants.build(params[:job_applicant])
+    if @job_applicant.save
+      flash[:notice] = "Job Application has been submitted."
+      redirect_to job_url(@job)
+    else
+      render :action => "show"
     end
   end
 

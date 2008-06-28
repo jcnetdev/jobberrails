@@ -1,0 +1,14 @@
+-# Set flash[:notice] to display a notice panel
+- if flash[:notice]
+  .flash.notice
+    = flash[:notice]
+    = link_to "Hide Message...", "#", :class => "close-text"
+- elsif flash[:success]
+  .flash.success
+    = flash[:success]
+    = link_to "Hide Message...", "#", :class => "close-text"
+- elsif flash[:error]
+  .flash.error
+    = flash[:error]
+    = link_to "Hide Message...", "#", :class => "close-text"
+

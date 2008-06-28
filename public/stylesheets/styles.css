@@ -449,6 +449,12 @@ span.la {
     font-size: 12px;
     font-family: Helvetica, Arial, sans-serif;
   }
+  .job-form input.submit
+  {
+    background-color: #00AAEE;
+    color: #fff;
+    
+  }
   .job-form input:focus, #search input:hover, .job-form textarea:focus, #search textarea:hover, #frm-send-to-friend input:focus, #frm-send-to-friend input:hover, #frm-send-edit-link input:focus, #frm-send-edit-link input:hover, #apply_online input:focus, #apply_online input:hover, #apply_online textarea:focus, #apply_online textarea:hover, #promo_form input:focus, #promo_form input:hover {
     border: 1px solid #7F635F;
   }
@@ -867,3 +873,11 @@ label.request-label {
   border: 1px solid #ccc;
   padding: 1px 2px 1px 2px;
 }
+
+.error, .notice, .success {padding:.8em;margin-bottom:1em;border:2px solid #ddd;}
+.error {background:#fff;color:darkred;border-color:red;}
+.notice {background:#fff;color:#514721;border-color:#FFD324;}
+.success {background:#fff;color:#264409;border-color:#C6D880;}
+.error a {color:#8a1f11;}
+.notice a {color:#514721;}
+.success a {color:#264409;}

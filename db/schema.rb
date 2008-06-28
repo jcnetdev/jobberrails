@@ -49,20 +49,20 @@ ActiveRecord::Schema.define(:version => 20080612113710) do
     t.string   "url"
     t.string   "apply"
     t.boolean  "is_temp"
-    t.boolean  "is_active",                         :default => false
+    t.boolean  "is_active",                          :default => false
     t.string   "outside_location"
     t.string   "poster_email"
     t.boolean  "apply_online"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "location_id",         :limit => 11
-    t.integer  "job_type_id",         :limit => 11
-    t.integer  "category_id",         :limit => 11
-    t.boolean  "verified",                          :default => false
-    t.boolean  "confirmed",                         :default => false
+    t.integer  "location_id",          :limit => 11
+    t.integer  "job_type_id",          :limit => 11
+    t.integer  "category_id",          :limit => 11
+    t.boolean  "verified",                           :default => false
+    t.boolean  "confirmed",                          :default => false
     t.text     "description_html"
     t.string   "formatting_type"
-    t.integer  "job_applicants_size", :limit => 11, :default => 0
+    t.integer  "job_applicants_count", :limit => 11, :default => 0
   end
 
   create_table "locations", :force => true do |t|
