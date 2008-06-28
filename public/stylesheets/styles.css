@@ -349,6 +349,10 @@ table/job-posts td.time-posted img, table/job-posts td.applicants img {
   color:#ff0000;
 }
 
+.error-message {
+  color:#ff0000;
+}
+
 
 #job_details {
   padding: 10px 0;
@@ -877,7 +881,7 @@ label.request-label {
 .error, .notice, .success {padding:.8em;margin-bottom:1em;border:2px solid #ddd;}
 .error {background:#fff;color:darkred;border-color:red;}
 .notice {background:#fff;color:#514721;border-color:#FFD324;}
-.success {background:#fff;color:#264409;border-color:#C6D880;}
+.success {background:#fff;color:green;border-color:#C6D880;font-weight:bold;}
 .error a {color:#8a1f11;}
 .notice a {color:#514721;}
 .success a {color:#264409;}

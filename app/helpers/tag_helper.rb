@@ -83,7 +83,7 @@ module TagHelper
     "&nbsp;"+
     link_to(label, url, options)
   end
-
+  
   def current_year
     Time.now.strftime("%Y")
   end

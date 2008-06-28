@@ -27,9 +27,11 @@ class JobsController < ApplicationController
     
     @job_applicant = @job.job_applicants.build(params[:job_applicant])
     if @job_applicant.save
-      flash[:notice] = "Job Application has been submitted."
+      # flash[:success] = " Congratulations, your application has been sent! Best of luck to you!"
+      session[:applied_id] = @job.id
       redirect_to job_url(@job)
     else
+      debugger
       render :action => "show"
     end
   end

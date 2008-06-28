@@ -16,4 +16,11 @@ module ApplicationHelper
     return links_html.join("\n")
   end
   
+  def error_message_for(record, attribute, error_msg = nil)
+    if record and record.respond_to? :errors
+      error_list = [record.errors.on(attribute)].flatten
+      return content_tag(:div, error_msg || error_list.join(", "), :class => "error-message")
+    end
+  end
+  
 end
