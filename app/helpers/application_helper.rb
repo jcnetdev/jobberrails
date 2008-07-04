@@ -22,5 +22,4 @@ module ApplicationHelper
       return content_tag(:div, error_msg || error_list.join(", "), :class => "error-message")
     end
   end
-  
 end

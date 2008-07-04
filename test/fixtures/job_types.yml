@@ -1,7 +1,7 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+full-time:
+  name: Full-time
+  value: fulltime
 
-# one:
-#   column: value
-#
-# two:
-#   column: value
+part-time:
+  name: Part-time
+  value: parttime

@@ -1,7 +1,5 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+seatle:
+  name: Seattle, WA
 
-# one:
-#   column: value
-#
-# two:
-#   column: value
+tampa:
+  name: Tampa, FL

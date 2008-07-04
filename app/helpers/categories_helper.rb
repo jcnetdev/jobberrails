@@ -1,5 +1,5 @@
 module CategoriesHelper
-  def category_nav_item(category)
+  def category_nav_item(category, admin = false)
     
     li_options = {}
     
@@ -8,7 +8,7 @@ module CategoriesHelper
       li_options[:class] = "selected"
     end
     
-    link = link_to "<span>#{category.name}</span><span class='cnr'>&nbsp;</span>", category_url(category), :title => category.name
+    link = link_to "<span>#{category.name.pluralize}</span><span class='cnr'>&nbsp;</span>", (admin ? admin_category_url(category) : category_url(category)), :title => category.name.pluralize
     
     return content_tag(:li, link, li_options)
   end

@@ -1,0 +1,12 @@
+- form_tag session_path, :id => 'publish_form' do
+  %fieldset
+    %legend Login
+    %table{:border => 0, :cellspacing => 2, :cellpadding => 2}
+      %tr
+        %td.publish-label Username:
+        %td= text_field_tag :login, params[:login], :size => 40
+      %tr
+        %td.publish-label Password:
+        %td= password_field_tag :password, params[:password], :size => 40
+  %fieldset
+    = submit_tag 'Login', :id => 'submit'

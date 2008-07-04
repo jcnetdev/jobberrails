@@ -1,0 +1,51 @@
+- if @job
+  = br
+  = link_to '« go back', admin_category_url(@job.category)
+  #job_details
+    -# display job outdated warning if applicable
+    - if @job.created_at < 40.days.ago
+      .old-ad
+        This job ad has been posted over 40 days ago...
+  
+    -# show applicants count
+    .applied-to-job
+      = @job.job_applicants.size
+      %p
+        - if @job.job_applicants.size != 1
+          applicants
+        - else
+          applicant
+  
+    -# show job title
+    %h2
+      = job_type_image(@job.job_type)
+      = @job.title
+  
+    -# show job location
+    %p
+      %span.fading at
+      - unless @job.url.blank? or @job.url == "http://"
+        = link_to @job.company, @job.url
+      - else
+        %strong= @job.company
+    
+      - if @job.located_at == "Anywhere"
+        %strong= "(" + @job.located_at + ")"
+      - else
+        %span.fading in
+        %strong= @job.located_at
+    
+    -# show job description
+    .job-description
+      = @job.description_html
+    = br
+    
+    #job_bottom
+      #number_views
+        Published at: 
+        %strong= @job.created_at.to_s(:post_listing_date)
+        = br
+        Viewed:
+        %strong= pluralize(@job.view_count, "time")
+      = clear
+        

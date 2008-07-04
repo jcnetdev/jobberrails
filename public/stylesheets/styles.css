@@ -889,3 +889,63 @@ label.request-label {
 .error a {color:#8a1f11;}
 .notice a {color:#514721;}
 .success a {color:#264409;}
+
+.login_status {text-align:right; margin-right: 20px;}
+
+#publish_form {}
+#publish_form fieldset, #promo_form fieldset {
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  margin: 0 0 5px 0;
+  padding: 10px;
+}
+#publish_form fieldset legend {
+  font-weight: bold;
+  color: #555;
+  font-size: 12px;
+}
+#publish_form input, #publish_form textarea, #frm-send-to-friend input, #frm-send-edit-link input, #apply-online input, #apply-online textarea, #promo_form input {
+  border: 1px solid #ccc;
+  padding: 5px;
+  font-size: 12px;
+  font-family: Helvetica, Arial, sans-serif;
+}
+#publish_form input:focus, #search input:hover, #publish_form textarea:focus, #search textarea:hover, #frm-send-to-friend input:focus,
+#frm-send-to-friend input:hover, #frm-send-edit-link input:focus, #frm-send-edit-link input:hover, #apply-online input:focus, #apply-online input:hover, #apply-online textarea:focus, #apply-online textarea:hover, #promo_form input:focus, #promo_form input:hover {
+  border: 1px solid #7F635F;
+}
+#publish_form input#submit, #send-to-friend input#submit, #frm-send-edit-link input#submit, #apply-online input#submit, #promo_form input#submit {
+  background-color: #0099CC;
+  color: #fff;
+  border: 1px solid #009988;
+  cursor: pointer;
+  cursor: hand;
+}
+#publish_form input#submit:hover, #send-to-friend input#submit:hover, #apply-online input#submit:hover, #promo_form input#submit:hover {
+  background-color: #00aaee;
+}
+#publish_form label.small {
+  color: #555;
+  font-size: 12px;
+}
+#publish_form input.no-border {
+  border: 0;
+}
+	
+td.publish-label {
+  width: 100px;
+}
+
+div#categs-nav {
+  background:#0099CC none repeat scroll 0% 0%;
+  float:left;
+  font-size:11px;
+  margin-top:25px;
+  padding-bottom:6px;
+  width:950px;
+}
+
+#no-ads {
+  color:#555555;
+  margin-top:10px;
+}

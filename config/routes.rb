@@ -1,5 +1,9 @@
 ActionController::Routing::Routes.draw do |map|
 
+  map.login '/login', :controller => 'sessions', :action => 'new'
+  map.logout '/logout', :controller => 'sessions', :action => 'destroy'
+  map.resource :session
+  
   map.resources :jobs, :member => {
                           :verify => :any, 
                           :apply => :post, 
@@ -11,10 +15,13 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :categories
   map.resource :search, :controller => "Search"
 
-  # map.namespace :admin do |admin|
-  #   # Directs /admin/jobs/* to Admin::JobsController (app/controllers/admin/jobs_controller.rb)
-  #   admin.resources :jobs
-  # end
+  map.admin '/admin', :controller => 'admin/jobs', :action => 'index'
+  map.namespace :admin do |admin|
+    # Directs /admin/jobs/* to Admin::JobsController (app/controllers/admin/jobs_controller.rb)
+    admin.resources :jobs
+    # Directs /admin/categories/* to Admin::CategoriesController (app/controllers/admin/categories_controller.rb)
+    admin.resources :categories
+  end
 
   map.root :controller => "jobs"
 

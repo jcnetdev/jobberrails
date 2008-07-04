@@ -1,0 +1,3 @@
+.job-listings
+  %h2= "Jobs for " + @category.name.pluralize
+  = partial "admin/jobs/jobs_table", :jobs => @jobs

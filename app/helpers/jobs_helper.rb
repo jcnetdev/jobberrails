@@ -17,7 +17,7 @@ module JobsHelper
         puts ", #{job.location}"
       elsif !job.location.blank?
         haml_tag :span, "in", :class => "la"
-        puts " #{job.location}"
+        puts " #{job.location.name}"
       end
     end
   end
