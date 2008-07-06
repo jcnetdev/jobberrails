@@ -13,7 +13,11 @@
     #container
       = partial "layouts/admin_header"
       - if logged_in?
-        = partial "admin/categories/list"
+        #categories
+          = partial "admin/categories/list"
 
       #content
         = yield
+     
+    .footer
+    #messagesContainer{:style => 'display:none'}

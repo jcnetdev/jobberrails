@@ -1,0 +1,11 @@
+%h2 Categories
+
+#categoriesContainer
+  = partial @categories
+
+= sortable_element "categoriesContainer", :url => saveorder_admin_categories_path, :tag => "div", :complete => visual_effect(:highlight, 'categoriesContainer')
+
+#overlay{:style => "display: none; top: 145px; left: 157px;height: 72px;"}
+  = image_tag("ajax-loader.gif", :alt => "Loading...")
+%p
+  = link_to_remote image_tag("add.png", :alt => 'Add') + " Add new category", :url => admin_categories_path, :method => :post, :loading => "Element.show('overlay')", :complete => "Element.hide('overlay');"

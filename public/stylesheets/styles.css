@@ -949,3 +949,90 @@ div#categs-nav {
   color:#555555;
   margin-top:10px;
 }
+
+#categoriesContainer {
+  position:relative;
+  width:670px;
+  padding-top:10px;
+  padding-bottom:10px;
+}
+
+.categoryItem {
+    background-color:#F5F5F5;
+    border:1px solid #CCCCCC;
+    margin:0pt 0pt 5px;
+    position:relative;
+    width:650px;
+    margin-left:10px;
+}
+
+.categoryHandle {
+    background:#0099CC none repeat scroll 0% 0%;
+    cursor:move;
+    height:10px;
+    margin-bottom:5px;
+    overflow:hidden;
+}
+
+.categoryWrapper {
+    padding:5px;
+}
+
+.categoryItem label {
+    display:block;
+    margin-bottom:5px;
+}
+
+.categoryItem label span {
+    clear:left;
+    display:block;
+    float:left;
+    font-weight:bold;
+    margin-bottom:5px;
+    width:70px;
+}
+
+a.deleteCategory, a.saveCategory {
+    float: right;
+}
+
+div.footer {
+    background:#F2FCFF url(/images/footer-bg.png) no-repeat scroll center top;
+    color:#888888;
+    float:left;
+    font-size:11px;
+    height:14em;
+    margin-top:30px;
+    padding-top:12px;
+    text-align:center;
+    width:100%;
+}
+
+#overlay {
+    vertical-align:middle;
+    background-color:#FFFFFF;
+    opacity:0.7;
+    width:650px;
+}
+
+#overlay img {
+    left:50%;
+    margin-left:-12px;
+    margin-top:-12px;
+    position:relative;
+    top:50%;
+    z-index:3000;
+}
+
+#messagesContainer {
+    left:50%;
+    margin-left:-150px;
+    position:absolute;
+    top:0pt;
+    width:300px;
+    background-color:#fff;
+    height:30px;
+    border:8px solid #eeeeee;
+    font-size:9px;
+    padding-top:10px;
+}

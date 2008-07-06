@@ -1,0 +1,14 @@
+.categoryItem{:id => "category_#{category.id}"}
+  .categoryHandle
+  .categoryWrapper
+    .categoryManagement{:style => 'float:right;width:10%;'}
+      = link_to_remote(image_tag("icon-delete.png", :alt => 'Delete') + " Delete", {:url => admin_category_url(category.id), :confirm => 'Are you sure you want to delete this category?', :method => :delete}, {:class => 'deleteCategory'})
+      = link_to_remote(image_tag("disk.png", :alt => 'Save') + " Save", {:url => admin_category_url(category.id), :method => :put, :with => "'name='+$F('name[#{category.id}]')+'&url='+$F('url[#{category.id}]')"}, {:id => "saveCategory#{category.id}", :class => 'saveCategory', :style => 'display:none;'})
+    %label
+      %span Name: 
+      = text_field_tag "name[#{category.id}]", category.name, :size => 60
+      = observe_field "name[#{category.id}]",  :frequency => 1, :function => show_save_category(category.id)
+    %label
+      %span URL: 
+      = text_field_tag "url[#{category.id}]", category.value, :size => 60
+      = observe_field "url[#{category.id}]",  :frequency => 1, :function => show_save_category(category.id)

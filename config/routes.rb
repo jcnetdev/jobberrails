@@ -20,7 +20,7 @@ ActionController::Routing::Routes.draw do |map|
     # Directs /admin/jobs/* to Admin::JobsController (app/controllers/admin/jobs_controller.rb)
     admin.resources :jobs
     # Directs /admin/categories/* to Admin::CategoriesController (app/controllers/admin/categories_controller.rb)
-    admin.resources :categories
+    admin.resources :categories, :collection => {:saveorder => :put}
   end
 
   map.root :controller => "jobs"

@@ -7,3 +7,8 @@ designer:
   name: Designers
   value: designers
   position: 2
+
+administrator:
+  name: Administrators
+  value: administrators
+  position: 3

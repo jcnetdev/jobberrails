@@ -1,0 +1,6 @@
+page.replace_html "categories", :partial => 'admin/categories/list'
+page.replace_html "messagesContainer", "Categories order changed. Saving ..."
+page.show "messagesContainer"
+page.delay(3) do
+  page.visual_effect :fade, "messagesContainer" 
+end

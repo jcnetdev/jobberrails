@@ -1,1 +1,6 @@
 page["job_#{@job.id}"].visual_effect :fade, "job_#{@job.id}"
+page.replace_html "messagesContainer", "Job has been deleted"
+page.show "messagesContainer"
+page.delay(3) do
+  page.visual_effect :fade, "messagesContainer" 
+end

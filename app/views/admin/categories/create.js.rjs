@@ -1,0 +1,9 @@
+page.insert_html :bottom, 'categoriesContainer', :partial => 'admin/categories/category'
+page.sortable 'categoriesContainer', :tag => 'div', :url => saveorder_admin_categories_path
+@category = nil
+page.replace_html "categories", :partial => 'admin/categories/list'
+page.replace_html "messagesContainer", "Category has been added"
+page.show "messagesContainer"
+page.delay(3) do
+  page.visual_effect :fade, "messagesContainer" 
+end
