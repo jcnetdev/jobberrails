@@ -22,4 +22,8 @@ module ApplicationHelper
       return content_tag(:div, error_msg || error_list.join(", "), :class => "error-message")
     end
   end
+  
+  def display_notice    
+    page.insert_html :after, 'footer', :partial => 'layouts/admin_flash_boxes'
+  end
 end

@@ -1,0 +1,4 @@
+- flash.each do |key, msg|
+  = content_tag :div, msg, :class => [key], :id => "#{key}_message"
+  - content_tag :script, :type => "text/javascript" do
+    = "setTimeout(\"new Effect.Fade('#{key}_message');\", 2000);"

@@ -9,7 +9,7 @@ one:
   outside_location: 
   poster_email: temp@temp.us
   apply_online: false
-  job_type: full-time
+  job_type: fulltime
   category: programmer
   location: seatle
 
@@ -24,6 +24,6 @@ two:
   outside_location: 
   poster_email: admin@admin.sd
   apply_online: false
-  job_type: part-time
+  job_type: parttime
   category: designer
   location: tampa

@@ -1,6 +1,2 @@
 page.replace "activate_#{@job.id}", activation_image_tag(@job)
-page.replace_html "messagesContainer", "Job has been activated/deactivated"
-page.show "messagesContainer"
-page.delay(3) do
-  page.visual_effect :fade, "messagesContainer" 
-end
+page.display_notice

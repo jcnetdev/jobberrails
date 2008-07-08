@@ -4,6 +4,6 @@ module Admin::CategoriesHelper
   end
   
   def show_save_category(category_id)
-    "Element.show('saveCategory#{category_id}');Element.replace('messagesContainer', '<div id=\"messagesContainer\" style=\"display:none\">Value changed. You must save the change!</div>');Element.show('messagesContainer')"
+    "Element.show('saveCategory#{category_id}')"
   end
 end

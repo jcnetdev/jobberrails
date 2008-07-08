@@ -23,13 +23,24 @@ class Admin::CategoriesControllerTest < ActionController::TestCase
     assert_difference('Category.count') do
       xhr :post, :create
     end
+    assert_select_rjs :insert_html, :bottom, 'categoriesContainer'
   end
   
   def test_should_update_category    
     login_as(:admin)
-    xhr :put, :update, {:id => categories(:programmer).id, :name => "New name"}
+    get :index
+    xhr :put, :update, {:id => categories(:programmer).id, :name => "New name", :url => 'new_value23'}
+    assert_response :success
     categories(:programmer).reload
     assert_equal('New name', categories(:programmer).name)
+  end
+  
+  def test_should_not_update_category
+    login_as(:mark)
+    category = categories(:programmer)
+    xhr :put, :update, {:id => categories(:programmer).id, :name => "Programmers", :url => 'new_value23'}
+    categories(:programmer).reload
+    assert_equal category.name, categories(:programmer).name
   end
   
   def test_should_delete_category_without_jobs
@@ -38,6 +49,7 @@ class Admin::CategoriesControllerTest < ActionController::TestCase
       xhr :delete, :destroy, :id => categories(:administrator).id
     end    
     assert_response :success
+    assert_select_rjs :remove, "category_#{categories(:administrator).id}"
   end
   
   def test_should_not_delete_category_with_jobs

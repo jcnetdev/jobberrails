@@ -1024,15 +1024,27 @@ div.footer {
     z-index:3000;
 }
 
-#messagesContainer {
+#notice_message {
     left:50%;
     margin-left:-150px;
     position:absolute;
     top:0pt;
     width:300px;
     background-color:#fff;
-    height:30px;
     border:8px solid #eeeeee;
+    font-size:9px;
+    padding-top:10px;
+    text-align:center;
+}
+
+#error_message {
+    left:50%;
+    margin-left:-150px;
+    position:absolute;
+    top:0pt;
+    width:300px;
+    background-color:#fff;
+    border:8px solid #ec0f0f;
     font-size:9px;
     padding-top:10px;
 }

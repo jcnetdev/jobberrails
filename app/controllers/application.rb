@@ -20,6 +20,11 @@ class ApplicationController < ActionController::Base
       redirect_to login_url
     end
   end
+  
+  def flash_notice(string)
+    flash[:notice] = string
+    flash.discard(:notice)
+  end
  
   protected
   def production?

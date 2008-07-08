@@ -1,7 +1,7 @@
-full-time:
+fulltime:
   name: Full-time
   value: fulltime
 
-part-time:
+parttime:
   name: Part-time
   value: parttime

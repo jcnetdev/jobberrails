@@ -1,10 +1,12 @@
 require 'test_helper'
 
 class AdminTest < ActiveSupport::TestCase
-  self.use_instantiated_fixtures  = true
 
   def test_authentication
-    assert_equal @mark, Admin.authenticate("mark", "longtest")
+    
+    assert_not_nil Admin.authenticate("admin", "admin")
+    
+    assert_equal admins(:mark), Admin.authenticate("mark", "longtest")
     
     # wrong username
     assert_nil Admin.authenticate("adminnn", "admin") 
