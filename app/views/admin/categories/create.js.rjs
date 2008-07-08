@@ -1,5 +1,6 @@
 page.insert_html :bottom, 'categoriesContainer', :partial => 'admin/categories/category'
-page.sortable 'categoriesContainer', :tag => 'div', :url => saveorder_admin_categories_path
+page.sortable 'categoriesContainer', :tag => 'div', :url => saveorder_admin_categories_path, 
+  :complete => visual_effect(:highlight, 'categoriesContainer')
 @category = nil
 page.replace_html "categories", :partial => 'admin/categories/list'
 page.display_notice
