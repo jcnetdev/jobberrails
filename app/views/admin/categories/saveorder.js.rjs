@@ -1,0 +1,2 @@
+page.replace_html "categories", :partial => 'admin/categories/list'
+page.display_notice

@@ -1,0 +1,14 @@
+#header
+  %h1#logo= link_to AppConfig.site_name, root_path
+  - if logged_in?
+    %ul#top{:style => 'padding-top:40px'}
+      %li= link_to "Pages", "#"
+      = bull
+      %li= link_to "Categories", admin_categories_path
+      = bull
+      %li= link_to "Change your password", "#"
+      = bull
+      %li= link_to "Logout", logout_path
+ 
+- unless logged_in?
+  #categs-nav

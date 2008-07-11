@@ -1,25 +1,29 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-
 one:
-  title: MyString
-  description: MyText
-  company: MyString
-  url: MyString
-  apply: MyString
+  title: web developer
+  description: temporary description
+  company: Foo Inc
+  url: http://www.xyz.pl
+  apply: null
   is_temp: false
-  is_active: false
-  outside_location: MyString
-  poster_email: MyString
+  is_active: true
+  outside_location: 
+  poster_email: temp@temp.us
   apply_online: false
+  job_type: fulltime
+  category: programmer
+  location: seatle
 
 two:
-  title: MyString
-  description: MyText
-  company: MyString
-  url: MyString
-  apply: MyString
-  is_temp: false
+  title: graphic
+  description: some description
+  company: Some company
+  url: www.xxx.xx
+  apply: null
+  is_temp: true
   is_active: false
-  outside_location: MyString
-  poster_email: MyString
+  outside_location: 
+  poster_email: admin@admin.sd
   apply_online: false
+  job_type: parttime
+  category: designer
+  location: tampa

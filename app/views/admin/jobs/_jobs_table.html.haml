@@ -1,0 +1,25 @@
+- unless jobs.empty?
+  -# Display Job Posts
+  %table.job-posts{:cellspacing => 0}
+    - jobs.each do |job|
+      %tr.job_item{:id => "job_" + job.id.to_s}
+        %td
+          = job_type_image(job.job_type)
+          = link_to job.title, admin_job_url(job), :title => job.title
+          %span.la at
+          = job_location_text(job)
+      
+        -# display time
+        %td.time-posted
+          = image_tag "clock.gif", :class => "vert-middle"
+          = job.created_at.to_s(:job_listing)
+
+        %td{:style => 'text-align:left;width:15%'}
+          -# activate/deactivate link
+          = link_to_activate_deactivate_job(job)
+          = saving_job_image_tag(job.id)
+          -# delete link
+          = link_to_delete_job(job.id)
+          
+- else
+  #no-ads No jobs, yet.

@@ -1,0 +1,10 @@
+if @category.jobs.empty?
+  page["category_#{@category.id}"].visual_effect :fade, "category_#{@category.id}"
+  page.delay(1) do
+    page.remove "category_#{@category.id}"
+  end
+  page.replace_html "categories", :partial => 'admin/categories/list'
+  page.display_notice
+else
+  page.alert("You cannot delete this category because there are jobs in this category!")
+end

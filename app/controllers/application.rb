@@ -13,7 +13,19 @@ class ApplicationController < ActionController::Base
   # Uncomment this to filter the contents of submitted sensitive data parameters
   # from your application log (in this case, all fields with names like "password"). 
   filter_parameter_logging :password
+       
+  def login_required
+    unless session[:admin]
+      flash[:notice] = "Please log in."
+      redirect_to login_url
+    end
+  end
   
+  def flash_notice(string)
+    flash[:notice] = string
+    flash.discard(:notice)
+  end
+ 
   protected
   def production?
     ENV["RAILS_ENV"] == "production"

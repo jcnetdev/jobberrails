@@ -35,4 +35,7 @@ class Test::Unit::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
+  def login_as(admin)
+    @request.session[:admin] = admin ? admins(admin) : nil
+  end
 end

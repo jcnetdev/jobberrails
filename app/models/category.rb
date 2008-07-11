@@ -1,6 +1,9 @@
 class Category < ActiveRecord::Base
   has_many :jobs
-
+  
+  validates_presence_of :name, :value
+  validates_uniqueness_of :value
+  
   def to_param
     self.value
   end

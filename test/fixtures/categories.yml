@@ -1,7 +1,14 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+programmer:
+  name: Programmers
+  value: programmers
+  position: 1
 
-# one:
-#   column: value
-#
-# two:
-#   column: value
+designer:
+  name: Designers
+  value: designers
+  position: 2
+
+administrator:
+  name: Administrators
+  value: administrators
+  position: 3

@@ -1,0 +1,6 @@
+.login_status
+  - if logged_in?
+    = "You are logged as #{current_user.login} " + link_to('Logout', logout_path)
+    = link_to '/ Admin tools', admin_path
+  - else
+    = link_to 'Login', login_path
