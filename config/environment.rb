@@ -10,7 +10,7 @@ RAILS_GEM_VERSION = '2.1.0' unless defined? RAILS_GEM_VERSION
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
 
-require 'plugins/app_config/lib/configuration'
+require 'github_gem'
 Rails::Initializer.run do |config|
   # Settings in config/environments/* take precedence over those specified here.
   # Application configuration should go into files in config/initializers
@@ -30,7 +30,7 @@ Rails::Initializer.run do |config|
   # Only load the plugins named here, in the order given. By default, all plugins 
   # in vendor/plugins are loaded in alphabetical order.
   # :all can be used as a placeholder for all plugins not explicitly named
-  config.plugins = [ :exception_notification, :all ]
+  # config.plugins = [ :exception_notification, :all ]
 
   # Add additional load paths for your own custom dirs
   # config.load_paths += %W( #{RAILS_ROOT}/extras )
@@ -68,14 +68,78 @@ Rails::Initializer.run do |config|
   
   # Gem Requirements
   config.gem "haml", :version => ">= 2.0.0"
-  config.gem "will_paginate", :version => ">= 2.2.2"
   
-  # Configuration Settings
-  config.app_config.site_name = "jobberRails"
-  config.app_config.site_url = "http://www.jobberrails.com"
-  config.app_config.from_email = "jobberRails<jobberrails@gmail.com>"
-  config.app_config.require_email_activation = false
+  # exception_notification
+  # ------
+  # Allows unhandled exceptions to be emailed on production
+  # ------
+  config.github_gem 'jcnetdev-exception_notification', :version => '>= 1.1'
 
-  config.app_config.search_suggestions = '(e.g. "ajax", "designer, london", "php, chicago")'
+  # acts_as_list
+  # ------
+  # Allows ActiveRecord Models to be easily ordered via position attributes
+  # ------
+  config.github_gem 'jcnetdev-acts_as_list', :version => '>= 1.0'
+  
+  # app_config
+  # ------
+  # Allow application wide configuration settings via YML files
+  # ------
+  config.github_gem 'jcnetdev-app_config', :version => '>= 1.0'
+  
+  # auto_migrations
+  # ------
+  # Allows migrations to be run automatically based on updating the schema.rb
+  # ------
+  config.github_gem 'jcnetdev-auto_migrations', :version => '>= 1.2'
+
+  # better_partials
+  # ------
+  # Adds a helper (partial) that wraps around render :partial. Pass local variables and blocks to your partials easily
+  # ------
+  config.github_gem 'jcnetdev-better_partials', :version => '>= 1.0'
+  
+  # form_fu
+  # ------
+  # Allows easier rails form creation and processing
+  # ------
+  config.github_gem 'neorails-form_fu', :version => '>= 0.51'
+                                       
+  # paperclip
+  # ------
+  # Allows easy uploading of files
+  # ------
+  config.github_gem 'jcnetdev-paperclip', :version => '>= 1.0'
+
+  # seed-fu
+  # ------
+  # Allows easier database seeding of tables
+  # ------
+  config.github_gem 'jcnetdev-seed-fu', :version => '>= 1.0'
+
+  # subdomain-fu
+  # ------
+  # Allows easier subdomain selection
+  # ------
+  # config.github_gem 'jcnetdev-subdomain-fu', :version => '>= 0.0.2'
+  
+  # validates_as_email_address
+  # ------
+  # Allows for easy format validation of email addresses
+  # ------
+  config.github_gem 'jcnetdev-validates_as_email_address', :version => '>= 1.0'
+  
+  # will_paginate
+  # ------
+  # Allows nice and easy pagination
+  # ------
+  config.github_gem 'jcnetdev-will_paginate', :version => '>= 2.3.2'
+  
+  # view_fu
+  # ------
+  # Adds view helpers for titles, stylesheets, javascripts, and common tags
+  # ------
+  config.github_gem 'neorails-view_fu', :version => '>= 0.3'
+  
 end
 

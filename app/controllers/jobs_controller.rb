@@ -29,7 +29,7 @@ class JobsController < ApplicationController
     @job_applicant = @job.job_applicants.build(params[:job_applicant])
     if @job_applicant.save
       session[:applied_id] = @job.id
-      Notifier::deliver_somebodyapplied(@job.poster_email,@job_applicant.name, @job_applicant.message, @job_applicant.filename, @job_applicant.id)
+      Notifier.deliver_somebody_applied(@job.poster_email,@job_applicant.name, @job_applicant.message, @job_applicant.filename, @job_applicant.id)
       redirect_to job_url(@job)
     else
       render :action => "show"
@@ -100,7 +100,7 @@ class JobsController < ApplicationController
         flash[:notice] = 'Job was successfully created.'
         format.html { redirect_to verify_job_url(@job) }
         format.xml  { render :xml => @job, :status => :created, :location => @job }
-        Notifier::deliver_jobposted(@job.poster_email,@job.company)
+        Notifier.deliver_job_posted(@job.poster_email,@job.company)
         
       else
         format.html { render :action => "new" }

@@ -1,0 +1,6 @@
+site_name: jobberRails
+site_url: http://www.jobberrails.com
+from_email: jobberRails<jobberrails@gmail.com>
+require_email_activation: false
+
+search_suggestions: '(e.g. "ajax", "designer, london", "php, chicago")'

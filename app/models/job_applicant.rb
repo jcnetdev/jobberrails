@@ -4,13 +4,10 @@ class JobApplicant < ActiveRecord::Base
 
   validates_presence_of :name
   validates_presence_of :email
-  validates_email_format_of :email
+  validates_as_email_address :email, :allow_blank => true
   
-  # allow attachments
-  has_attachment :storage => :file_system,
-                 # :storage => :s3,
-                 :path_prefix => "public/attachments"
-                 
+  has_attached_file :resume
+  
   def self.new_default(init_values = {})
     self.new(init_values)
   end

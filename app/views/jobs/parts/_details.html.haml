@@ -51,7 +51,7 @@
     -# show job apply form
     - if !confirm and job.apply_online?
       #apply_online_now= link_to "&raquo; Apply now", "#"
-      #apply_online{hidden_unless(@job_applicant)}
+      #apply_online{hide_unless(@job_applicant)}
         = partial "jobs/parts/apply_form", :job => job, :job_applicant => @job_applicant
     
     #job_bottom

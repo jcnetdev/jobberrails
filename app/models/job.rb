@@ -22,7 +22,7 @@ class Job < ActiveRecord::Base
   validates_presence_of :company
   validates_presence_of :poster_email
   
-  validates_email_format_of :poster_email
+  validates_as_email_address :poster_email
   
   before_save :format_fields
   

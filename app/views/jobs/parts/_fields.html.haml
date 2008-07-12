@@ -26,7 +26,7 @@
         %td
           = f.select :location_id, Location.to_select, :disabled => !@job.outside_location.blank?, :include_blank => "-- Anywhere --"
           = link_to @job.location_switch_label, "#", :id => "other_location_label", :onclick => "Jobber.HandleLocationOutside(); return false;"
-          #outside_location{hidden_if(@job.outside_location.blank?)}
+          #outside_location{hide_if(@job.outside_location.blank?)}
             where ?
             = f.text_field :outside_location, :size => 50, :maxlength => 140
             .suggestion

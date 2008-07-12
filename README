@@ -32,7 +32,7 @@ http://jobberrails.crowdsound.com/widgets/content?aid=234
 
 1) Set up Database (database.yml)
 
-2) Run rake db:create db:migrate db:seed
+2) Run rake gems:install db:create db:schema:load db:migrate
 
 3) Start server
 

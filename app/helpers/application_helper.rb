@@ -26,4 +26,29 @@ module ApplicationHelper
   def display_notice    
     page.insert_html :after, 'footer', :partial => 'layouts/admin_flash_boxes'
   end
+  
+  # Additional View Helpers
+  
+  def bull
+    "<li>&bull;</li>"
+  end
+  
+  def nbsp
+    "&nbsp;"
+  end
+  
+  def add_class_if(condition, css_class)
+    if condition
+      {:class => css_class}
+    else
+      {}
+    end
+  end
+  
+  
+  def link_to_image(image_path, label, url, options={})
+    link_to(image_tag(image_path, :class => "vert-middle"), url, options) +
+    nbsp +
+    link_to(label, url, options)
+  end
 end

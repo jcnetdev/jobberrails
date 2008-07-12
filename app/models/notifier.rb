@@ -1,27 +1,27 @@
 class Notifier < ActionMailer::Base
   
 
-  def jobposted(recipient, company, sent_at = Time.now)
-    subject    'thanks for posting'
+  def job_posted(recipient, company, sent_at = Time.now)
+    subject    "#{AppConfig.site_name} - Thanks for Posting"
     recipients recipient
-    from       'jobs@'
+    from       AppConfig.from_email
     sent_on    sent_at
     content_type "multipart/alternative"
     
     part :content_type => "text/plain",
-      :body =>  render_message("jobposted", :company => company)
+      :body =>  render_message("job_posted", :company => company)
 
   end
 
-  def somebodyapplied(recipient, name, message, filename, id, sent_at = Time.now)
-    subject    'somebody applied'
+  def somebody_applied(recipient, name, message, filename, id, sent_at = Time.now)
+    subject    "#{AppConfig.site_name} - New Job Applicant"
     recipients recipient
-    from       'jobs@'
+    from       AppConfig.from_email
     sent_on    sent_at
     content_type "multipart/alternative"
     
     part :content_type => "text/plain",
-      :body =>  render_message("somebodyapplied", :name => name, :message => message, :filename => filename, :id => id)
+      :body =>  render_message("somebody_applied", :name => name, :message => message, :filename => filename, :id => id)
 
   end
 
