@@ -2,3 +2,4 @@
 tmp/**/*
 log/*.log
 code_update.tar.gz
+public/resumes

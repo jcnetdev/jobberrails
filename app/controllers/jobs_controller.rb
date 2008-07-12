@@ -29,7 +29,7 @@ class JobsController < ApplicationController
     @job_applicant = @job.job_applicants.build(params[:job_applicant])
     if @job_applicant.save
       session[:applied_id] = @job.id
-      Notifier.deliver_somebody_applied(@job.poster_email,@job_applicant.name, @job_applicant.message, @job_applicant.filename, @job_applicant.id)
+      Notifier.deliver_somebody_applied(@job.poster_email,@job_applicant.name, @job_applicant.message, @job_applicant.resume.url, @job_applicant.id)
       redirect_to job_url(@job)
     else
       render :action => "show"

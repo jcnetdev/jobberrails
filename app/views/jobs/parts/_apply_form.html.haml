@@ -31,13 +31,11 @@
         %td{:valign => "top"}
           %label Upload Resume/CV
         %td
-          = f.file_field :uploaded_data
+          = f.file_field :resume
           .suggestion
             Max. 3 MB. Recommended formats: PDF, RTF, DOC, ODT.          
-          - if job_applicant.errors.on(:filename)
+          - if job_applicant.errors.on(:resume)
             .error-message Please attach a resume to apply.
-          - elsif job_applicant.errors.on(:content_type)
-            .error-message Please upload a valid resume file type (PDF, RTF, DOC, ODT, or TXT).
       %tr
         %td{:colspan => "2"}= nbsp;
 
