@@ -1,27 +1,54 @@
-require 'test_helper'
+require 'test/test_helper'
+require 'notifier'
 
-class NotifierTest < ActionMailer::TestCase
-  tests Notifier
+class NotifierTest < Test::Unit::TestCase
+  CHARSET = "utf-8" 
+
   
-  def test_assert_truth
-    assert true
+
+  include ActionMailer::Quoting
+
+  def setup
+    ActionMailer::Base.delivery_method = :test
+    ActionMailer::Base.perform_deliveries = true
+    ActionMailer::Base.deliveries = []
+
+    @expected = TMail::Mail.new
+    @expected.set_content_type "text", "plain", { "charset" => CHARSET }
   end
-  
-  # TODO: fix these tests
-  # def test_job_posted
-  #   @expected.subject = "#{AppConfig.site_name} - Thanks for Posting"
-  #   @expected.body    = read_fixture('job_posted')
-  #   @expected.date    = Time.now
-  # 
-  #   assert_equal @expected.encoded, Notifier.create_job_posted(@expected.date).encoded
-  # end
-  # 
-  # def test_somebody_applied
-  #   @expected.subject = "#{AppConfig.site_name} - New Job Applicant"
-  #   @expected.body    = read_fixture('somebody_applied')
-  #   @expected.date    = Time.now
-  # 
-  #   assert_equal @expected.encoded, Notifier.create_somebody_applied(@expected.date).encoded
-  # end
 
+  def test_job_posted
+    
+    recipient = "#{AppConfig.from_email}"
+    company = 'jobberRails'
+    response = Notifier.deliver_job_posted(recipient,company)
+    
+    assert_equal "#{AppConfig.site_name} - Thanks for Posting", response.subject
+    assert_match "Hello jobberRails!,\n\nThank you for posting a new job opening. \n\nWe'll be in touch when somebody applies.", response.body
+    assert_equal "jobberrails@gmail.com", response.to[0]
+  end
+
+ def test_somebody_applied
+   
+   recipient = "#{AppConfig.from_email}"
+   company = 'jobberRails'
+   message = "New Job Applicant"
+   filename = "filename"
+   id = "3"
+   sent_at = Time.now
+   response = Notifier.deliver_somebody_applied(recipient,name,message,filename,id,sent_at)
+   
+   assert_equal "#{AppConfig.site_name} - New Job Applicant", response.subject
+   assert_equal "jobberrails@gmail.com", response.to[0]
+   assert response.body =~ /New Job Applicant/
+
+ end
+   
+   private
+       def read_fixture(action)
+         IO.readlines("#{action}")
+       end
+   
+   
 end
+

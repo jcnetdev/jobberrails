@@ -14,6 +14,7 @@ class SessionsController < ApplicationController
       flash[:notice] = "You are logged as #{admin.login}"
       redirect_to admin_url
     else
+      session[:admin] = admin
       flash[:error] = "Invalid login or password!"
       redirect_to login_url
     end

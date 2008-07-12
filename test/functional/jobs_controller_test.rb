@@ -1,4 +1,4 @@
-require 'test_helper'
+require 'test/test_helper'
 
 class JobsControllerTest < ActionController::TestCase
   def test_should_get_index
