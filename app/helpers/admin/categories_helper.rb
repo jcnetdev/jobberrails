@@ -3,24 +3,24 @@ module Admin::CategoriesHelper
     category_nav_item(category, true)
   end
   
-  def show_save_category(category_id)
-    "Element.show('saveCategory#{category_id}')"
+  def show_save_category(category)
+    "Element.show('#{category.dom_id("save")}')"
   end
   
-  def link_to_delete_category(category_id)
+  def link_to_delete_category(category)
     link_to_remote(image_tag("icon-delete.png", :alt => 'Delete') + " Delete", {
-      :url => admin_category_url(category_id), 
+      :url => admin_category_url(category.id), 
       :confirm => 'Are you sure you want to delete this category?', 
       :method => :delete }, 
       { :class => 'deleteCategory'})
   end
   
-  def link_to_save_category(category_id)
+  def link_to_save_category(category)
     link_to_remote(image_tag("disk.png", :alt => 'Save') + " Save", {
-      :url => admin_category_url(category_id), 
+      :url => admin_category_url(category.id), 
       :method => :put, 
-      :with => "'name='+$F('name[#{category_id}]')+'&url='+$F('url[#{category_id}]')" }, 
-      { :id => "saveCategory#{category_id}", 
+      :with => "'name='+$F('#{category.dom_id("name")}')+'&url='+$F('#{category.dom_id("url")}')" }, 
+      { :id => "#{category.dom_id("save")}", 
         :class => 'saveCategory', :style => 'display:none;' })
   end
   

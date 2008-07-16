@@ -14,6 +14,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :job_requests, :collection => {:success => :get}
   map.resources :categories
   map.resource :search, :controller => "Search"
+  
+  map.resources :pages
 
   map.admin '/admin', :controller => 'admin/jobs', :action => 'index'
   map.namespace :admin do |admin|
@@ -21,6 +23,8 @@ ActionController::Routing::Routes.draw do |map|
     admin.resources :jobs
     # Directs /admin/categories/* to Admin::CategoriesController (app/controllers/admin/categories_controller.rb)
     admin.resources :categories, :collection => {:saveorder => :put}
+    # Directs /admin/pages/* to Admin::PagesController (app/controllers/admin/pages_controller.rb)
+    admin.resources :pages
   end
 
   map.root :controller => "jobs"

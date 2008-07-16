@@ -70,7 +70,7 @@ class AdministrativePanelTest < ActionController::IntegrationTest
     
     # sort categories
     put '/admin/categories/saveorder', :categoriesContainer => [categories(:designer).id,categories(:administrator).id,categories(:programmer).id]
-    assert_equal [0,1,2], [categories(:designer).reload.position, categories(:administrator).reload.position,categories(:programmer).reload.position]
+    assert_equal [1,2,3], [categories(:designer).reload.position, categories(:administrator).reload.position,categories(:programmer).reload.position]
     
     count = Category.count 
     # should not delete category with jobs

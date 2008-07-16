@@ -214,7 +214,7 @@ table.job-posts td.time-posted, table.job-posts td.applicants {
   font-size: 11px;
   width: 80px;
 }
-table/job-posts td.time-posted img, table/job-posts td.applicants img {
+table job-posts td.time-posted img, table job-posts td.applicants img {
   width: 11px;
 }
 
@@ -1047,4 +1047,52 @@ div.footer {
     border:8px solid #ec0f0f;
     font-size:9px;
     padding-top:10px;
+}
+
+table.pages-container {
+    width:100%;
+}
+
+table.pages-container td {
+    border-bottom:1px solid #DDDDDD;
+    padding:5px;
+}
+
+#publish_form .submit_button {
+    background-color:#0099CC;
+    border:1px solid #009988;
+    color:#FFFFFF;
+    cursor:pointer;
+    font-family:Helvetica,Arial,sans-serif;
+    font-size:12px;
+    padding:5px;
+}
+
+#publish_form .text_field {
+  width:700px;
+}
+
+#publish_form .textarea_field_small {
+  width:340px;
+}
+
+#publish_form .textarea_field {
+  width:700px;
+}
+
+.formError {
+    color:#E86857;
+    display:block;
+    padding:10px 26px;
+    font-style:italic;
+}
+
+.sidebar_page_edit {
+    padding-top:430px;
+}
+
+#apply-online {
+    background-color:#F6F6F6;
+    padding:10px;
+    width:735px;
 }

@@ -1,0 +1,14 @@
+%h3.page-heading= @page.title
+= @page.content
+- if @page.has_form
+  #contact-form
+    #contact-form-contents
+      =# TODO sending emails
+      - form_tag "", :id => 'apply-online' do
+        = label_tag 'apply_name', 'Your name:', :style => 'display:block'
+        = text_field_tag :contact_name, params[:contact_name], :size => 30, :style => 'display:block;margin-bottom:15px'
+        = label_tag 'apply_email', 'Your e-mail:', :style => 'display:block'
+        = text_field_tag :contact_email, params[:contact_email], :size => 30, :style => 'display:block;margin-bottom:15px'
+        = label_tag 'apply_msg', 'Message:', :style => 'display:block'
+        = text_area_tag :contact_msg, params[:contact_msg], :rows => 8, :cols => 50, :style => 'display:block;margin-bottom:15px'
+        = submit_tag 'Send message', :id => 'submit'

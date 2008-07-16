@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20080703181307) do
+ActiveRecord::Schema.define(:version => 20080715192840) do
 
   create_table "admins", :force => true do |t|
     t.string   "login"
@@ -27,18 +27,19 @@ ActiveRecord::Schema.define(:version => 20080703181307) do
   end
 
   create_table "job_applicants", :force => true do |t|
-    t.integer  "job_id",              :limit => 11
+    t.integer  "job_id",       :limit => 11
     t.string   "name"
     t.string   "email"
     t.string   "message"
     t.string   "ip"
+    t.string   "content_type"
+    t.string   "filename"
+    t.string   "thumbnail"
+    t.integer  "size",         :limit => 11
+    t.integer  "width",        :limit => 11
+    t.integer  "height",       :limit => 11
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "integer"
-    t.string   "resume_file_name"
-    t.string   "resume_file_size"
-    t.string   "resume_content_type"
-    t.string   "string"
   end
 
   create_table "job_hunters", :force => true do |t|
@@ -107,5 +108,18 @@ ActiveRecord::Schema.define(:version => 20080703181307) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+  
+  create_table :pages, :force => true do |t|
+      t.string :url
+      t.string :page_title
+      t.text :keywords
+      t.text :description
+      t.string :title
+      t.text :content
+      t.boolean :has_form
+      t.text :form_message
+
+      t.timestamps
+    end
 
 end

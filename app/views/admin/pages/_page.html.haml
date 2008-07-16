@@ -1,0 +1,6 @@
+%tr.page-item{:id => page.dom_id}
+  %td
+    = link_to(page.title, page_path(page), :target => '_blank') + ' - ' + page.page_title
+  %td{:width => 200}
+    = link_to image_tag("page_white_edit.png", :alt => 'Edit') + ' Edit', edit_admin_page_path(page), :title => 'Edit'
+    = link_to_remote(image_tag("icon-delete.png", :alt => 'Delete') + ' Delete',  :url => admin_page_path(page), :confirm => 'Are you sure you want to delete this page?', :method => :delete, :title => 'Delete')

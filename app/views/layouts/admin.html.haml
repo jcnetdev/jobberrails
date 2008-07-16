@@ -6,6 +6,8 @@
     = title :site => AppConfig.site_name
     = stylesheets
     = javascripts
+    = javascript_include_tiny_mce_if_used
+    = tiny_mce if using_tiny_mce?
   
     = feed_links
     
@@ -15,6 +17,8 @@
       - if logged_in?
         #categories
           = partial "admin/categories/list"
+        - if @page
+          = partial "layouts/admin_pages_sidebar"
 
       #content
         = yield

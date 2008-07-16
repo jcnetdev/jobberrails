@@ -1,0 +1,51 @@
+- form_for [:admin, @page], :html => {:id => 'publish_form'} do |f|
+  %p= submit_tag @page.new_record? ? "Add page" : "Modify page", :class => 'submit_button'
+  %fieldset
+    %legend SEO
+    %table{:cellspacing => 0, :cellpadding => 0, :border => 0}
+      %tr
+        %td{:colspan => 2}
+          = f.label(:url, "URL") 
+          = error_message_on(:page, :url)
+      %tr
+        %td{:colspan => 2}= f.text_field :url, :class => 'text_field'
+
+      %tr
+        %td{:colspan => 2}= f.label :page_title
+      %tr
+        %td{:colspan => 2}= f.text_field :page_title, :class => 'text_field'
+
+      %tr
+        %td{:width => '50%'}= f.label :keywords
+        %td{:width => '50%'}= f.label :description
+
+      %tr
+        %td{:width => '50%'}= f.text_area :keywords, :class => 'textarea_field_small', :rows => 6
+        %td{:width => '50%'}= f.text_area :description, :class => 'textarea_field_small', :rows => 6
+
+  %p= submit_tag @page.new_record? ? "Add page" : "Modify page", :class => 'submit_button'
+
+  %fieldset
+    %legend Content
+    %table{:cellspacing => 0, :cellpadding => 0, :border => 0}
+      %tr
+        %td{:colspan => 2}
+          = f.label :title
+          = error_message_on(:page, :title)
+      %tr
+        %td{:colspan => 2}= f.text_field :title, :class => 'text_field'
+
+      %tr
+        %td{:colspan => 2}= f.label :content
+      %tr
+        %td{:colspan => 2}= f.text_area :content, :class => "textarea_field mceEditor", :rows => 40
+
+      %tr
+        %td{:colspan => 2}= f.check_box(:has_form) + ' Has contact form?'
+        = observe_has_form
+      %tr#has_form_label{:style => @form_style}
+        %td{:colspan => 2}= f.label :form_message
+      %tr#has_form_textarea{:style => @form_style}
+        %td{:colspan => 2}= f.text_area :form_message, :class => "textarea_field mceEditor", :rows => 20
+
+  %p= submit_tag @page.new_record? ? "Add page" : "Modify page", :class => 'submit_button'

@@ -1,2 +1,2 @@
-page["job_#{@job.id}"].visual_effect :fade, "job_#{@job.id}"
+page[@job.dom_id].visual_effect :fade, @job.dom_id
 page.display_notice

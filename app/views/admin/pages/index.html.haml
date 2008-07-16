@@ -1,0 +1,8 @@
+%h2 Pages
+
+%table.pages-container{:cellspacing => 0}
+  = partial @pages
+
+%p
+%p
+  = link_to image_tag("page_white_add.png", :alt => 'Add new page') + ' Add new page', new_admin_page_path, :title => 'Add new page'
