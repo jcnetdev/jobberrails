@@ -1,21 +1,19 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-
-one:
-  url: MyString
-  page_title: MyString
-  keywords: MyText
-  description: MyText
-  title: MyString
-  content: MyText
+about:
+  url: about
+  page_title: About
+  keywords: 
+  description: 
+  title: About Us
+  content: Some content
   has_form: false
-  form_message: MyText
+  form_message: 
 
-two:
-  url: MyString
-  page_title: MyString
-  keywords: MyText
-  description: MyText
-  title: MyString
-  content: MyText
-  has_form: false
-  form_message: MyText
+contact:
+  url: contact
+  page_title: Contact Us
+  keywords: contact, form
+  description: Contact form
+  title: Contact Us
+  content: If you have questions fill in the form
+  has_form: true
+  form_message: Thank you for message

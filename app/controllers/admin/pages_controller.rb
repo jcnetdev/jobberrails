@@ -48,7 +48,7 @@ class Admin::PagesController < ApplicationController
   
   # GET /admin/pages/1/edit
   def edit
-    @page = Page.find_by_url params[:id]
+    @page = Page.find_by_url(params[:id])
     
     @form_style = '' if @page.has_form
   end
@@ -56,12 +56,14 @@ class Admin::PagesController < ApplicationController
   # PUT /admin/pages/1
   def update
     @page = Page.find_by_url(params[:id])
+    url = @page.url
     
     respond_to do |format|
       if @page.update_attributes(params[:page])
         flash[:notice] = 'Page was successfully updated.'
         format.html { redirect_to admin_pages_url }
       else
+        @page.url = url
         format.html { render :action => "edit" }
       end
     end

@@ -55,13 +55,11 @@ class AdministrativePanelTest < ActionController::IntegrationTest
     
     get '/admin/categories'
     assert_response :success
-    
-    count = Category.count 
-    
+        
     # add category
-    post '/admin/categories'
-    assert_response :redirect
-    assert_not_equal(count, Category.count)
+    assert_difference("Category.count", 1) do
+      post '/admin/categories'
+    end
     
     # update category name
     put "/admin/categories/#{categories(:designer).id}", :name => 'New name', :url => categories(:designer).value
@@ -72,17 +70,52 @@ class AdministrativePanelTest < ActionController::IntegrationTest
     put '/admin/categories/saveorder', :categoriesContainer => [categories(:designer).id,categories(:administrator).id,categories(:programmer).id]
     assert_equal [1,2,3], [categories(:designer).reload.position, categories(:administrator).reload.position,categories(:programmer).reload.position]
     
-    count = Category.count 
     # should not delete category with jobs
-    delete "/admin/categories/#{categories(:designer).id}"
-    assert_response :redirect
-    assert_equal count, Category.count
+    assert_no_difference("Category.count") do
+      delete "/admin/categories/#{categories(:designer).id}"
+    end
     
     # should delete category without jobs
-    delete "/admin/categories/#{categories(:administrator).id}"
-    assert_response :redirect
-    assert_equal count - 1, Category.count
+    assert_difference("Category.count", -1) do
+      delete "/admin/categories/#{categories(:administrator).id}"
+    end
         
+    logout_user
+  end
+  
+  def test_manage_pages
+    login_user
+    
+    get '/admin/pages'
+    assert_response :success
+    
+    get '/admin/pages/new'
+    assert_response :success
+    
+    # add category
+    assert_difference("Page.count", 1) do
+      post '/admin/pages', :page => {:title => 'Title', :url => 'urls'}
+    end
+    
+    assert_redirected_to admin_pages_url
+    
+    get "/admin/pages/#{pages(:about).url}/edit"
+    assert_response :success
+    
+    # update page
+    put "/admin/pages/#{pages(:about).url}", :page => {:title => 'New title', :content => 'Some content'}
+    assert_response :redirect
+    
+    assert_redirected_to admin_pages_url
+    
+    pages(:about).reload
+    assert_equal 'New title', pages(:about).title
+        
+    # delete page
+    assert_difference("Page.count", -1) do
+      delete "/admin/pages/#{pages(:contact).url}"
+    end
+    
     logout_user
   end
   

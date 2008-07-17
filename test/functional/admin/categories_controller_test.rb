@@ -7,7 +7,7 @@ class Admin::CategoriesControllerTest < ActionController::TestCase
     assert_response :success
   end
   
-  def test_shouls_show_category_jobs
+  def test_should_show_category_jobs
     login_as(:mark)
     get :show, :id => categories(:programmer).name
     assert_not_nil assigns(:jobs)

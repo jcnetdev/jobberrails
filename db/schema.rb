@@ -108,18 +108,18 @@ ActiveRecord::Schema.define(:version => 20080715192840) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-  
-  create_table :pages, :force => true do |t|
-      t.string :url
-      t.string :page_title
-      t.text :keywords
-      t.text :description
-      t.string :title
-      t.text :content
-      t.boolean :has_form
-      t.text :form_message
 
-      t.timestamps
-    end
+  create_table "pages", :force => true do |t|
+    t.string   "url"
+    t.string   "page_title"
+    t.text     "keywords"
+    t.text     "description"
+    t.string   "title"
+    t.text     "content"
+    t.boolean  "has_form"
+    t.text     "form_message"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end
