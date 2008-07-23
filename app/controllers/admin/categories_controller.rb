@@ -15,25 +15,28 @@ class Admin::CategoriesController < ApplicationController
   
   # POST /admin/categories
   def create
-    @category = Category.new(:name => 'New category', 
-                             :value => "newcategory#{Category.last.id + 1}")
-    flash_notice("Category has been added")
+    begin
+      @category = Category.new(:name => 'New category', 
+                               :value => "newcategory#{rand(Time.now)}")
+      @category.save!
+    rescue ActiveRecord::RecordInvalid
+      retry
+    end
     
+    flash.now[:notice] = "Category has been added"
     respond_to do |format|
-      if @category.save
-        format.html { redirect_to admin_categories_url }
-        format.js # admin/categories/create.js.rjs
-      end
+      format.html { redirect_to admin_categories_url }
+      format.js # admin/categories/create.js.rjs
     end
   end
   
   # PUT /admin/categories/1
   def update
     @category = Category.find(params[:id])
-    flash_notice("Category has been updated")
     
     respond_to do |format|
       if @category.update_attributes(:name => params[:name], :value => params[:url])
+        flash.now[:notice] = "Category has been updated"
         format.html { redirect_to admin_categories_url }
         format.js # admin/categories/update.js.rjs
       else
@@ -43,7 +46,7 @@ class Admin::CategoriesController < ApplicationController
             @category.reload            
             page.alert @category.errors.full_messages.join("\n")
             page.replace(@category.dom_id, :partial => 'admin/categories/category', :category => @category)
-            page.sortable 'categoriesContainer', :tag => 'div', :url => saveorder_admin_categories_path
+            page.sortable "categoriesContainer", sortable_categories_container_options
           end
         }
       end
@@ -56,7 +59,7 @@ class Admin::CategoriesController < ApplicationController
       category = Category.find(id)
       category.update_attribute('position', position + 1)
     end
-    flash_notice("Categories order changed. Saving ...")
+    flash.now[:notice] = "Categories order changed. Saving ..."
     
     respond_to do |format|
       format.html { redirect_to admin_categories_url }
@@ -70,7 +73,7 @@ class Admin::CategoriesController < ApplicationController
     
     if @category.jobs.empty?
       @category.destroy 
-      flash_notice("Category has been deleted")
+      flash.now[:notice] = "Category has been deleted"
     end
     
     respond_to do |format|

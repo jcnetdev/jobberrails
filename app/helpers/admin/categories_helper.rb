@@ -11,7 +11,9 @@ module Admin::CategoriesHelper
     link_to_remote(image_tag("icon-delete.png", :alt => 'Delete') + " Delete", {
       :url => admin_category_url(category.id), 
       :confirm => 'Are you sure you want to delete this category?', 
-      :method => :delete }, 
+      :method => :delete,
+      :loading => "showOverlay('#{category.dom_id}');",
+      :complete => "Element.hide('overlay');" }, 
       { :class => 'deleteCategory'})
   end
   
@@ -19,23 +21,26 @@ module Admin::CategoriesHelper
     link_to_remote(image_tag("disk.png", :alt => 'Save') + " Save", {
       :url => admin_category_url(category.id), 
       :method => :put, 
-      :with => "'name='+$F('#{category.dom_id("name")}')+'&url='+$F('#{category.dom_id("url")}')" }, 
+      :with => "'name='+$F('#{category.dom_id("name")}')+'&url='+$F('#{category.dom_id("url")}')",
+      :loading => "showOverlay('#{category.dom_id}');",
+      :complete => "Element.hide('overlay');" }, 
       { :id => "#{category.dom_id("save")}", 
         :class => 'saveCategory', :style => 'display:none;' })
   end
   
-  def sortable_element_categories_container
-    sortable_element "categoriesContainer", 
-      :url => saveorder_admin_categories_path, 
+  def sortable_categories_container_options
+    {:url => saveorder_admin_categories_path, 
       :tag => "div", 
-      :complete => visual_effect(:highlight, 'categoriesContainer')
+      :handle => "categoryHandle",
+      :loading => "showOverlay('categoriesContainer');",
+      :complete => "Element.hide('overlay');"}      
   end
   
   def link_to_add_category
     link_to_remote image_tag("add.png", :alt => 'Add') + " Add new category", 
       :url => admin_categories_path, 
       :method => :post, 
-      :loading => "Element.show('overlay')", 
-      :complete => "Element.hide('overlay');"
+      :loading => "Element.show('add-category-overlay')", 
+      :complete => "Element.hide('add-category-overlay');"
   end
 end

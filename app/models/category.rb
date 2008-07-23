@@ -4,7 +4,8 @@ class Category < ActiveRecord::Base
   
   validates_presence_of :name, :value
   validates_uniqueness_of :value
-  validates_format_of :value, :with => /^[-a-z0-9_]{4,20}$/
+  validates_length_of :value, :within => 4..30
+  validates_format_of :value, :with => /^[-a-z0-9_]{4,30}$/
   
   def to_param
     self.value

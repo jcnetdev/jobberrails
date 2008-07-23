@@ -961,7 +961,7 @@ div#categs-nav {
     background-color:#F5F5F5;
     border:1px solid #CCCCCC;
     margin:0pt 0pt 5px;
-    position:relative;
+    /*position:relative;*/
     width:650px;
     margin-left:10px;
 }
@@ -1008,14 +1008,14 @@ div.footer {
     width:100%;
 }
 
-#overlay {
+#add-category-overlay {
     vertical-align:middle;
     background-color:#FFFFFF;
     opacity:0.7;
     width:650px;
 }
 
-#overlay img {
+#add-category-overlay img {
     left:50%;
     margin-left:-12px;
     margin-top:-12px;
@@ -1095,4 +1095,48 @@ table.pages-container td {
     background-color:#F6F6F6;
     padding:10px;
     width:735px;
+}
+
+#messagesContainer {
+    left:50%;
+    margin-left:-150px;
+    position:absolute;
+    top:0pt;
+    width:300px;
+}
+
+#overlay {
+    background-color:#FFFFFF;
+    display:none;
+    opacity:0.7;
+    position:absolute;
+}
+
+#overlay img {
+    left:50%;
+    margin-left:-12px;
+    margin-top:-12px;
+    position:absolute;
+    top:50%;
+    z-index:3000;
+}
+
+.draggingItem {
+    background: #E86857;
+    z-index: 4000;
+}
+
+#header ul#nav-admin {
+    position:absolute;
+    right:0pt;
+    top:80px;
+}
+
+#header ul#nav-admin li {
+    float:left;
+    padding-left:20px;
+}
+
+#header ul#nav-admin li.selected {
+    font-weight:bold;
 }

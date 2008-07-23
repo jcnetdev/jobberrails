@@ -73,7 +73,7 @@ class Admin::PagesController < ApplicationController
   def destroy
     @page = Page.find_by_url(params[:id])
     @page.destroy
-    flash_notice("Page has been deleted")
+    flash.now[:notice] = "Page has been deleted"
     
     respond_to do |format|
       format.html { redirect_to(admin_pages_url) }

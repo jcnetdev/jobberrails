@@ -22,6 +22,9 @@
 
       #content
         = yield
-     
+    
+    #overlay{:style => 'display:none'}
+      = image_tag("ajax-loader.gif", :alt => "Loading...")
+    #messagesContainer= render :partial => 'layouts/admin_flash_boxes'
     #footer
-    = render :partial => 'layouts/admin_flash_boxes'
+    

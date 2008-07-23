@@ -3,130 +3,220 @@ require 'test_helper'
 class AdministrativePanelTest < ActionController::IntegrationTest
   
   def test_login_logout
-    get '/admin/jobs'
-    assert_response :redirect
-    
-    assert_equal 'Please log in.', flash[:notice]
-
-    post '/session', {:login => 'admin', :password => 'admin'}
-    assert_response :redirect
-    
-    assert session[:admin]
-    
-    post '/logout'
-    assert_response :redirect
-    assert_nil session[:admin]
+    admin = admin_for_test
+    admin.try_to_login
+    admin.login    
+    admin.logout
   end
   
-  def test_activate_and_deactivate_jobs
-    login_user
+  def test_jobs_management
+    admin = admin_for_test
+    admin.login
     
-    # activate deactive job
-    put "/admin/jobs/#{jobs(:two).id}"
-    jobs(:two).reload
-    assert jobs(:two).is_active
+    admin.activate_inactive_job
+    admin.deactivate_active_job
     
-    # deactivate active job
-    get "/admin/categories/#{jobs(:two).category}"
-    put "/admin/jobs/#{jobs(:two).id}"
-    jobs(:two).reload
-    assert_equal(false, jobs(:two).is_active)
-    assert_equal "Job has been activated/deactivated", flash[:notice]
+    admin.delete_active_job
+    admin.delete_inactive_job
     
-    logout_user
+    admin.logout
   end
   
-  def test_delete_job
-    login_user
+  def test_categories_management
+    admin = admin_for_test
+    admin.login
     
-    # inactive job
-    delete "/admin/jobs/#{jobs(:two).id}"
-    assert_raise(ActiveRecord::RecordNotFound) { jobs(:two).reload }
+    admin.get_categories_list
+    admin.add_new_category
+    admin.update_category
+    admin.sort_categories
+    admin.delete_category
     
-    # active job
-    delete "/admin/jobs/#{jobs(:one).id}"
-    assert_raise(ActiveRecord::RecordNotFound) { jobs(:one).reload }
-    
-    logout_user
+    admin.logout
   end
   
-  def test_manage_categories
-    login_user
+  def test_pages_management
+    admin = admin_for_test
+    admin.login
     
-    get '/admin/categories'
-    assert_response :success
+    admin.get_pages_list
+    admin.create_page
+    admin.update_page
+    admin.delete_page
+    
+    admin.logout
+  end 
+  
+  def admin_for_test
+    open_session do |admin|
+      def admin.try_to_login
+        get "admin"
+        assert_nil session[:admin]
+        assert_response :redirect
+        assert_redirected_to login_path
+        post "session", :login => "test failure string", :password => "test failure string"
+        assert_nil session[:admin]
+        assert_equal "Invalid login or password!", flash[:error]
+      end
+      
+      def admin.login
+        get "login"
+        assert_response :success
+        assert_nil session[:admin]
+        post "session", :login => 'admin', :password => 'admin'
+        assert_not_nil session[:admin]
+        assert_response :redirect
+        assert_redirected_to admin_path
+      end
+      
+      def admin.logout
+        delete "logout"
+        assert_response :redirect
+        assert_redirected_to login_path
+        assert_nil session[:admin]
+      end
+      
+      def admin.activate_inactive_job
+        get "admin"
+        assert_response :success
         
-    # add category
-    assert_difference("Category.count", 1) do
-      post '/admin/categories'
-    end
-    
-    # update category name
-    put "/admin/categories/#{categories(:designer).id}", :name => 'New name', :url => categories(:designer).value
-    categories(:designer).reload
-    assert_equal 'New name', categories(:designer).name
-    
-    # sort categories
-    put '/admin/categories/saveorder', :categoriesContainer => [categories(:designer).id,categories(:administrator).id,categories(:programmer).id]
-    assert_equal [1,2,3], [categories(:designer).reload.position, categories(:administrator).reload.position,categories(:programmer).reload.position]
-    
-    # should not delete category with jobs
-    assert_no_difference("Category.count") do
-      delete "/admin/categories/#{categories(:designer).id}"
-    end
-    
-    # should delete category without jobs
-    assert_difference("Category.count", -1) do
-      delete "/admin/categories/#{categories(:administrator).id}"
-    end
+        assert_not_nil assigns(:jobs)
+        inactive_jobs_count = assigns(:jobs).size
+        put "admin/jobs/#{assigns(:jobs).first.id}"
+        assert_equal "Job has been activated", flash[:notice]
         
-    logout_user
-  end
-  
-  def test_manage_pages
-    login_user
-    
-    get '/admin/pages'
-    assert_response :success
-    
-    get '/admin/pages/new'
-    assert_response :success
-    
-    # add category
-    assert_difference("Page.count", 1) do
-      post '/admin/pages', :page => {:title => 'Title', :url => 'urls'}
-    end
-    
-    assert_redirected_to admin_pages_url
-    
-    get "/admin/pages/#{pages(:about).url}/edit"
-    assert_response :success
-    
-    # update page
-    put "/admin/pages/#{pages(:about).url}", :page => {:title => 'New title', :content => 'Some content'}
-    assert_response :redirect
-    
-    assert_redirected_to admin_pages_url
-    
-    pages(:about).reload
-    assert_equal 'New title', pages(:about).title
+        get "admin"
+        assert_equal inactive_jobs_count - 1, assigns(:jobs).size
+      end
+      
+      def admin.deactivate_active_job
+        get "admin/categories/#{categories(:designer).value}"
+        assert_not_nil assigns(:jobs)
+        active_jobs_count = assigns(:jobs).size
+        put "admin/jobs/#{assigns(:jobs).first.id}"
+        assert_equal "Job has been deactivated", flash[:notice]
         
-    # delete page
-    assert_difference("Page.count", -1) do
-      delete "/admin/pages/#{pages(:contact).url}"
+        get "admin/categories/#{categories(:designer).value}"
+        assert_equal active_jobs_count - 1, assigns(:jobs).size
+      end
+      
+      def admin.delete_active_job
+        get "admin/categories/#{categories(:programmer).value}"
+        assert_not_nil assigns(:jobs)
+        assert_difference("Job.count", -1) do
+          xhr :delete, "admin/jobs/#{assigns(:jobs).first.id}"
+        end
+        
+        assert_equal "Job has been deleted", flash[:notice]
+      end
+      
+      def admin.delete_inactive_job
+        get "admin"
+        assert_not_nil assigns(:jobs)
+        assert_difference("Job.count", -1) do
+          xhr :delete, "admin/jobs/#{assigns(:jobs).first.id}"
+        end
+        
+        assert_equal "Job has been deleted", flash[:notice]
+      end
+      
+      def admin.get_categories_list
+        get "admin/categories"
+        assert_response :success
+        assert_not_nil assigns(:categories) 
+        assert_template "admin/categories/index"
+      end
+      
+      def admin.add_new_category
+        get_categories_list
+        
+        assert_difference("Category.count", 1) do
+          xhr :post, 'admin/categories'
+        end
+        
+        assert_equal "Category has been added", flash[:notice]
+        assert_select_rjs :insert, :bottom, "categoriesContainer"
+      end
+      
+      def admin.update_category
+        get_categories_list
+        
+        xhr :put, "admin/categories/#{categories(:designer).id}", :name => 'New name', :url => categories(:designer).value
+        assert_equal 'New name', categories(:designer).reload.name
+        
+        assert_equal "Category has been updated", flash[:notice]
+      end
+      
+      def admin.sort_categories
+        get_categories_list
+        
+        xhr :put, "admin/categories/saveorder", :categoriesContainer => [categories(:designer).id,categories(:administrator).id,categories(:programmer).id]
+        assert_equal [1,2,3], [categories(:designer).reload.position, categories(:administrator).reload.position,categories(:programmer).reload.position]
+        
+        assert_equal "Categories order changed. Saving ...", flash[:notice]
+      end
+      
+      def admin.delete_category
+        get_categories_list
+        
+        assert_no_difference("Category.count") do
+          xhr :delete, "admin/categories/#{categories(:designer).id}"
+        end
+        
+        assert_difference("Category.count", -1) do
+          xhr :delete, "admin/categories/#{categories(:administrator).id}"
+        end
+        
+        assert_select_rjs :remove, categories(:administrator).dom_id
+        assert_equal "Category has been deleted", flash[:notice]
+      end
+      
+      def admin.get_pages_list
+        get "admin/pages"
+        assert_not_nil assigns(:pages) 
+        assert_template "admin/pages/index"
+      end
+      
+      def admin.create_page
+        get_pages_list
+        
+        get 'admin/pages/new'
+        assert_response :success
+        assert_template "admin/pages/new"
+        
+        assert_difference("Page.count", 1) do
+          post 'admin/pages', :page => {:title => 'Title', :url => 'urls'}
+        end
+        
+        assert_response :redirect
+        assert_redirected_to admin_pages_url 
+        
+        assert_equal "Page was successfully created.", flash[:notice]
+      end
+      
+      def admin.update_page
+        get_pages_list
+        
+        get "admin/pages/#{pages(:about).url}/edit"
+        assert_response :success
+        assert_template "admin/pages/edit"
+        
+        put "admin/pages/#{pages(:about).url}", :page => {:title => 'New title', :content => 'Some content'}
+       
+        assert_response :redirect
+        assert_redirected_to admin_pages_url 
+        assert_equal "Page was successfully updated.", flash[:notice]
+      end
+      
+      def admin.delete_page
+        get_pages_list
+        
+        assert_difference("Page.count", -1) do
+          xhr :delete, "admin/pages/#{pages(:contact).url}"
+        end
+        
+        assert_equal "Page has been deleted", flash[:notice]
+      end
     end
-    
-    logout_user
-  end
-  
-  private
-  def login_user
-    post '/session', {:login => 'admin', :password => 'admin'}
-    assert_response :redirect
-  end
-  
-  def logout_user
-    post '/logout'
-    assert_response :redirect
   end
 end

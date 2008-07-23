@@ -24,7 +24,7 @@ module ApplicationHelper
   end
   
   def display_notice    
-    page.insert_html :after, 'footer', :partial => 'layouts/admin_flash_boxes'
+    page.replace_html "messagesContainer", :partial => 'layouts/admin_flash_boxes'
   end
   
   # Additional View Helpers
@@ -50,5 +50,19 @@ module ApplicationHelper
     link_to(image_tag(image_path, :class => "vert-middle"), url, options) +
     nbsp +
     link_to(label, url, options)
+  end
+  
+  def navigation_list(links)
+    link_html = ''
+    links.each do |link|
+      link_html << content_tag('li', link_to(link[:text], link[:url]), 
+        add_class_if(current_section(link[:url]), 'selected'))
+    end
+    content_tag('ul', link_html, :id => "nav-admin")
+  end
+
+  private
+  def current_section(link)
+    @controller.controller_path == link.sub(/\//, "")
   end
 end

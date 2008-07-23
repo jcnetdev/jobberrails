@@ -20,8 +20,7 @@ class SessionsControllerTest < ActionController::TestCase
   
   def test_should_show_error_after_failed_login
     post :create, :login => 'quentin', :password => 'bad password'
-    assert_response :redirect
-    assert_redirected_to login_url
+    
     assert_equal "Invalid login or password!", flash[:error]
   end
   
