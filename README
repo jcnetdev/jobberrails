@@ -104,27 +104,6 @@ SeedFu (Rails Plugin)
 AppConfig (Rails Plugin)
 
 
-== S3 Support for Resumes
-
-To store uploaded resume files in S3, update job_applicant.rb changing the :storage mechanism from
-:file_system to :s3. You'll also need to create a config/amazon_s3.yml with the following yml format:
-
-    development:
-      bucket_name: appname_development
-      access_key_id:
-      secret_access_key:
-     
-    test:
-      bucket_name: appname_test
-      access_key_id:
-      secret_access_key:
-     
-    production:
-      bucket_name: appname
-      access_key_id:
-      secret_access_key:
-
-
 == Credits
 
 All credit for this app goes to the fine folks over at JobberBase who put together the slick looking interface for 
