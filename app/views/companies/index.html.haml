@@ -1,0 +1,10 @@
+%h3.page-heading Companies that published here
+
+- companies_tag_cloud @companies, %w(company-tag-1 company-tag-2 company-tag-3 company-tag-4 company-tag-5 company-tag-6) do |name, count, url, css_class|
+  %span{:class => css_class}
+    = link_to h(name) + " (" + count + ")", jobs_at_path(:company => url)
+
+%p{:style => "margin-top:20px"}
+  Total
+  %strong= @companies.size
+  companies
