@@ -1,1 +1,11 @@
-SOMEBODY APPLIED EMAIL
+Hello there, 
+
+Somebody just applied to your job opening.
+
+------------------------------------------
+
+Name: <%= @name %>
+
+Message: <%= @message %>
+
+------------------------------------------
