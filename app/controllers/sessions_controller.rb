@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
     else
       session[:admin] = admin
       flash[:error] = "Invalid login or password!"
-      redirect_to login_url
+      render :action => "new"
     end
   end
   

@@ -15,10 +15,10 @@ class Admin::JobsController < ApplicationController
   # PUT /admin/jobs/1
   def update
     @job = Job.find(params[:id])
-    flash_notice("Job has been activated/deactivated")
 
     respond_to do |format|
       if @job.update_attributes(:is_active => @job.is_active ? false : true)
+        flash.now[:notice] = @job.is_active ? "Job has been activated" : "Job has been deactivated"
         format.html { redirect_to admin_jobs_url }
         format.js # admin/jobs/update.js.rjs
       end
@@ -29,7 +29,7 @@ class Admin::JobsController < ApplicationController
   def destroy
     @job = Job.find(params[:id])
     @job.destroy
-    flash_notice("Job has been deleted")
+    flash.now[:notice] = "Job has been deleted"
     
     respond_to do |format|
       format.html { redirect_to admin_jobs_url }

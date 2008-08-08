@@ -1,5 +1,5 @@
-page["category_#{@category.id}"].visual_effect :pulsate, "category_#{@category.id}"
-page.hide "saveCategory#{@category.id}"
+page[@category.dom_id].visual_effect :pulsate, @category.dom_id
+page.hide @category.dom_id("save")
 @category = nil
 page.replace_html "categories", :partial => 'admin/categories/list'
 page.display_notice

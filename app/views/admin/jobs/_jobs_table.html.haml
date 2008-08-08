@@ -2,7 +2,7 @@
   -# Display Job Posts
   %table.job-posts{:cellspacing => 0}
     - jobs.each do |job|
-      %tr.job_item{:id => "job_" + job.id.to_s}
+      %tr.job-item{:id => job.dom_id}
         %td
           = job_type_image(job.job_type)
           = link_to job.title, admin_job_url(job), :title => job.title
@@ -17,9 +17,9 @@
         %td{:style => 'text-align:left;width:15%'}
           -# activate/deactivate link
           = link_to_activate_deactivate_job(job)
-          = saving_job_image_tag(job.id)
+          = saving_job_image_tag(job)
           -# delete link
-          = link_to_delete_job(job.id)
+          = link_to_delete_job(job)
           
 - else
   #no-ads No jobs, yet.

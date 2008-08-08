@@ -1,0 +1,6 @@
+#job-listings
+  - unless @jobs.nil?
+    %h2= "Jobs at #{@company}"
+    = partial 'jobs/parts/post_table', :jobs => @jobs
+  - else
+    %h2= "There aren't any company called \"#{params[:company]}\""

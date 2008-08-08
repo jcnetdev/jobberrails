@@ -1,0 +1,19 @@
+#sidebar
+  .sidebar_page_edit
+    %h3 Links
+    %p Make a selection in the editor or select an existing link and click on one of the links bellow.
+    %dl#links_list
+      %dt 
+        %strong Internal
+      %dd= link_to "Post a job", new_job_url, :target => '_blank'
+      %dd= link_to "Ideal job", new_job_request_url, :target => '_blank'
+      %dd= link_to "RSS Feed", jobs_url(:format => "atom"), :target => '_blank'
+      %dd= link_to "Companies", "#", :target => '_blank'
+      %dt 
+        %strong Categories
+      - Category.list.each do |category|
+        %dd= link_to category.name, category_url(category), :target => '_blank'
+      %dt 
+        %strong Pages
+      - Page.all.each do |page|
+        %dd= link_to page.title, page_url(page), :target => '_blank'

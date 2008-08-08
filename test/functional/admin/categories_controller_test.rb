@@ -1,11 +1,22 @@
 require 'test_helper'
 
 class Admin::CategoriesControllerTest < ActionController::TestCase
-  def test_should_show_category_and_active_jobs
+  def test_should_show_category
     login_as(:mark)
     get :show, :id => categories(:programmer).name
     assert_response :success
+  end
+  
+  def test_should_show_category_jobs
+    login_as(:mark)
+    get :show, :id => categories(:programmer).name
     assert_not_nil assigns(:jobs)
+  end
+  
+  def test_should_show_category_active_jobs
+    login_as(:mark)
+    get :show, :id => categories(:programmer).name
+    
     assigns(:jobs).each do |job|
       assert_equal categories(:programmer).name, job.category.name
       assert job.is_active
@@ -26,13 +37,30 @@ class Admin::CategoriesControllerTest < ActionController::TestCase
     assert_select_rjs :insert_html, :bottom, 'categoriesContainer'
   end
   
+  def test_should_insert_category_at_bottom
+    login_as(:mark)
+    xhr :post, :create
+    assert_select_rjs :insert_html, :bottom, 'categoriesContainer'
+  end
+  
   def test_should_update_category    
     login_as(:admin)
-    get :index
     xhr :put, :update, {:id => categories(:programmer).id, :name => "New name", :url => 'new_value23'}
     assert_response :success
+  end
+  
+  def test_should_update_category_name
+    login_as(:admin)
+    xhr :put, :update, {:id => categories(:programmer).id, :name => "New name", :url => categories(:programmer).value}
     categories(:programmer).reload
     assert_equal('New name', categories(:programmer).name)
+  end
+  
+  def test_should_update_category_value
+    login_as(:admin)
+    xhr :put, :update, {:id => categories(:programmer).id, :name => categories(:programmer).name, :url => 'new_url_1234'}
+    categories(:programmer).reload
+    assert_equal('new_url_1234', categories(:programmer).value)
   end
   
   def test_should_not_update_category
@@ -40,7 +68,7 @@ class Admin::CategoriesControllerTest < ActionController::TestCase
     category = categories(:programmer)
     xhr :put, :update, {:id => categories(:programmer).id, :name => "Programmers", :url => 'new_value23'}
     categories(:programmer).reload
-    assert_equal category.name, categories(:programmer).name
+    assert_equal category, categories(:programmer)
   end
   
   def test_should_delete_category_without_jobs
@@ -49,22 +77,28 @@ class Admin::CategoriesControllerTest < ActionController::TestCase
       xhr :delete, :destroy, :id => categories(:administrator).id
     end    
     assert_response :success
-    assert_select_rjs :remove, "category_#{categories(:administrator).id}"
+    assert_select_rjs :remove, categories(:administrator).dom_id
+  end
+  
+  def test_should_remove_category
+    login_as(:bob)
+    xhr :delete, :destroy, :id => categories(:administrator).id
+    assert_select_rjs :remove, categories(:administrator).dom_id
   end
   
   def test_should_not_delete_category_with_jobs
     login_as(:bob)
-    count = Category.count
-    xhr :delete, :destroy, :id => categories(:programmer).id
-    assert_equal(count, Category.count)
+    assert_no_difference("Category.count") do
+      xhr :delete, :destroy, :id => categories(:programmer).id
+    end
   end
   
   def test_should_change_order
     login_as(:mark)
     xhr :put, :saveorder, :categoriesContainer => [categories(:administrator).id, categories(:programmer).id, categories(:designer).id]
     categories(:administrator).reload
-    assert_equal 0, categories(:administrator).position
+    categories(:programmer).reload
     categories(:designer).reload
-    assert_equal 2, categories(:designer).position
+    assert_equal [1, 2, 3], [categories(:administrator).position, categories(:programmer).position, categories(:designer).position]
   end
 end

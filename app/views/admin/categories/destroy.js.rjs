@@ -1,7 +1,7 @@
 if @category.jobs.empty?
-  page["category_#{@category.id}"].visual_effect :fade, "category_#{@category.id}"
+  page[@category.dom_id].visual_effect :fade, @category.dom_id
   page.delay(1) do
-    page.remove "category_#{@category.id}"
+    page.remove @category.dom_id
   end
   page.replace_html "categories", :partial => 'admin/categories/list'
   page.display_notice

@@ -1,0 +1,2 @@
+page[@page.dom_id].visual_effect :fade, @page.dom_id
+page.display_notice

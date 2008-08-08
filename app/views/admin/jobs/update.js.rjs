@@ -1,2 +1,2 @@
-page.replace "activate_#{@job.id}", activation_image_tag(@job)
+page.replace @job.dom_id("activate"), activation_image_tag(@job)
 page.display_notice

@@ -87,6 +87,23 @@ class Job < ActiveRecord::Base
 
   end
   
+  def self.companies_count
+    all :select => 'company as name, COUNT(*) as count', 
+      :conditions => 'is_active = true', 
+      :order => 'company', 
+      :group => 'company'
+  end
+  
+  def self.find_company(company)
+    companies = all :select => 'DISTINCT company'
+    
+    companies.each do |comp|
+      return comp.company if ERB::Util.url_encode(comp.company) == company
+    end
+    
+    nil
+  end
+  
   protected
   def format_fields
     self.description_html = format_html(self.description)

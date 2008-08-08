@@ -3,9 +3,9 @@
 #categoriesContainer
   = partial @categories
 
-= sortable_element_categories_container
+= sortable_element "categoriesContainer", sortable_categories_container_options
 
-#overlay{:style => "display: none; top: 145px; left: 157px;height: 72px;"}
+#add-category-overlay{:style => "display: none; top: 145px; left: 157px;height: 72px;"}
   = image_tag("ajax-loader.gif", :alt => "Loading...")
 %p
   = link_to_add_category
