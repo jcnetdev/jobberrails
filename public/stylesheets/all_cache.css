@@ -309,9 +309,6 @@ table/job-posts td.time-posted img, table/job-posts td.applicants img {
   background-color: #ffd0d6;
   padding: 5px;
 }
-.validation-failure img {
-  vertical-align: -3px;
-}
 .apply-status-ok {
   color: #009900; 
   background-color: #dfFFda; 
@@ -328,6 +325,7 @@ table/job-posts td.time-posted img, table/job-posts td.applicants img {
   font-size: 11px;
   float: right;
   width: 250px;
+
 }
 
 .suggestion {
@@ -1050,3 +1048,104 @@ div.footer {
     font-size:9px;
     padding-top:10px;
 }
+
+.right {
+  float: right; }
+
+.left {
+  float: left; }
+
+.clear-both, .clear {
+  clear: both; }
+
+.clear-right {
+  clear: right; }
+
+.clear-left {
+  clear: left; }
+
+.text-left {
+  text-align: left !important; }
+
+.text-right {
+  text-align: right !important; }
+
+.text-center {
+  text-align: center !important; }
+
+.relative {
+  position: relative; }
+
+.hidden {
+  display: none; }
+
+.flash {
+  position: relative;
+  padding-right: 25px;
+  text-align: center; }
+  .flash .close {
+    cursor: pointer;
+    position: absolute;
+    top: 8px;
+    right: 2px; }
+  .flash a {
+    font-weight: bold;
+    color: #0066CB; }
+
+.bold {
+  font-weight: bold !important; }
+
+.inline {
+  display: inline !important; }
+
+.block {
+  display: block !important; }
+
+.hint {
+  color: #999 !important; }
+
+.hpad-15 {
+  padding-left: 15px;
+  padding-right: 15px; }
+
+.hpad-30 {
+  padding-left: 30px;
+  padding-right: 30px; }
+
+.hpad-50 {
+  padding-left: 50px;
+  padding-right: 50px; }
+
+.hpad-100 {
+  padding-left: 100px;
+  padding-right: 100px; }
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: bold; }
+
+.vert-middle {
+  vertical-align: middle; }
+
+.empty {
+  margin: 30px;
+  font-size: 15px; }
+
+.flash {
+  position: relative;
+  padding-right: 25px;
+  text-align: center; }
+  .flash .close {
+    cursor: pointer;
+    position: absolute;
+    top: 8px;
+    right: 2px; }
+  .flash a {
+    font-weight: bold;
+    color: #0066CB; }
+
+
+.flash {
+  position: absolute;
+  right: 0px;
+  top: 65px;
+  z-index: 2; }

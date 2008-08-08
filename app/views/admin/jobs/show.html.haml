@@ -11,10 +11,7 @@
     .applied-to-job
       = @job.job_applicants.size
       %p
-        - if @job.job_applicants.size != 1
-          applicants
-        - else
-          applicant
+        = pluralize(@job.job_applicants.size, "applicant")
   
     -# show job title
     %h2

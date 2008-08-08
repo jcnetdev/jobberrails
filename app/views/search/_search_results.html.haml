@@ -1,21 +1,22 @@
 %h3
   Search Results for
   == "#{h(@query)}"
-  - if @ajax
+  - if request.xhr?
     = link_to "Clear Search", "#", :class => "clear-search"
+
 - if @jobs.empty?
   %p.empty
     No jobs found matching 
     %strong== #{h(@query)}
     - if @category
       in 
-      %strong= @category.name
+      %strong=h @category.name
       = br
       = link_to "Search Entire Site", search_url(:keywords => @query, :ajax => nil)
 - else
   = partial "jobs/parts/post_table", :jobs => @jobs, :show_applicants => false
   
   
-- if @ajax and !@jobs.empty?
+- if request.xhr? and !@jobs.empty?
   = br
   = link_to "View Search Results...", search_url(:keywords => @query, :cat_id => params[:cat_id], :ajax => nil)

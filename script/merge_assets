@@ -1,0 +1,65 @@
+#!/usr/bin/env ruby
+
+def merge_assets
+  # =============
+  # This script performs predeploy tasks such as packaging up and minimizing javascript/css
+  # =============
+
+  puts "========================="
+  puts "RUNNING MERGE ASSETS     "
+  puts "========================="
+
+  # Clean Up Javascript Min
+  puts "Clearing out javascripts/min"
+  puts `mkdir -p ./public/javascripts/min`
+  puts `rm -f ./public/javascripts/min/*.js`
+  puts "========================="
+
+  package_js("common", false)
+  package_js("components", false)
+  package_js("jquery.ext", false)
+  package_js("libraries", false)
+
+  # Clean Up Javascript Min
+  # puts "Cleaning up javascripts/min"
+  # puts `rm -f ./public/javascripts/min/*.concat.js`
+  # puts "=========================\n\n"
+end
+
+def package_js(path, min = true)
+  # Package up the javascript files
+  # It relies on having Java installed
+  # --nomunge               Minify only, do not obfuscate
+  # --preserve-semi         Preserve all semicolons
+  # --preserve-strings      Do not merge concatenated string literals
+  puts "Packaging up #{path.upcase}"
+  concat_path(path, "js", "javascripts")
+
+  if min
+    puts `java -jar ./script/jar/yuicompressor-2.2.4.jar --nomunge --preserve-semi --preserve-strings ./public/javascripts/min/#{path}.concat.js > ./public/javascripts/min/#{path}.js`
+  else
+    puts `mv ./public/javascripts/min/#{path}.concat.js ./public/javascripts/min/#{path}.js` #TEMP
+  end
+  puts "finished..."
+  puts "========================="
+end
+
+def package_css(path)
+  puts "Packaging up #{path.upcase} Stylesheets to min/#{path}.css"  
+  concat_path(path, "css", "stylesheets")
+  puts `java -jar ./script/jar/yuicompressor-2.2.4.jar ./public/stylesheets/min/#{path}.concat.css > ./public/stylesheets/min/#{path}.css`
+  puts "finished..."
+  puts "========================="
+end
+
+def concat_path(path, extension, output_folder)  
+  file = File.open( "./public/#{output_folder}/min/#{path}.concat.#{extension}", "w+") do |f|    
+    Dir["./public/#{output_folder}/#{path}/**/*.#{extension}"].each do |file|
+      f.puts "/* ---- Compressing #{file} ----- */\n" 
+      f.puts File.open(file, "r").read
+      f.puts "\n"
+    end
+  end
+end
+
+merge_assets

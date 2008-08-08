@@ -14,8 +14,7 @@ class SearchController < ApplicationController
     
     
     # hide layout for ajax requests
-    if params[:ajax] == "true"
-      @ajax = true
+    if request.xhr?
       render :partial => "search/search_results", :layout => false
     else
       params[:q] = ""

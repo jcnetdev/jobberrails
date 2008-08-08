@@ -27,21 +27,21 @@
     -# show job title
     %h2
       = job_type_image(job.job_type)
-      = job.title
+      =h job.title
   
     -# show job location
     %p
       %span.fading at
       - unless job.url.blank? or job.url == "http://"
-        = link_to job.company, job.url
+        = link_to h(job.company), job.url
       - else
-        %strong= job.company
+        %strong=h job.company
     
       - if job.located_at == "Anywhere"
-        %strong== (#{job.located_at})
+        %strong== (#{h(job.located_at)})
       - else
         %span.fading in
-        %strong= job.located_at
+        %strong=h job.located_at
     
     -# show job description
     .job-description

@@ -4,8 +4,4 @@ $j(document).ready(function() {
     $j(this).example(this.title);
   });
   
-  
-  
-  // fix pngs
-  Jobber.FixPng();
 });

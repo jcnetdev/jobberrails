@@ -8,8 +8,9 @@ class JobApplicant < ActiveRecord::Base
   
   has_attached_file :resume
   
+  attr_protected :job_id
+  
   def self.new_default(init_values = {})
     self.new(init_values)
   end
-
 end

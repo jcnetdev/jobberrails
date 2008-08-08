@@ -22,6 +22,8 @@ class Job < ActiveRecord::Base
   validates_presence_of :company
   validates_presence_of :poster_email
   
+  validates_format_of :title, :company, :outside_location, :with => Validation::NO_HTML, :message => Validation::NO_HTML_MESSAGE
+  
   validates_as_email_address :poster_email
   
   before_save :format_fields
@@ -61,7 +63,7 @@ class Job < ActiveRecord::Base
     
     # return location if applicable
     if self.location
-      @located_at = self.location.name
+      @located_at = self.g.name
       return @located_at
     end
     

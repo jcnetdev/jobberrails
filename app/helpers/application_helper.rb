@@ -1,6 +1,10 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
   
+  def stylesheets
+    stylesheet "styles", "util", "application", :cache => "all_cache"
+  end
+  
   def feed_links
     links_html = []
     
@@ -20,6 +24,14 @@ module ApplicationHelper
     if record and record.respond_to? :errors
       error_list = [record.errors.on(attribute)].flatten
       return content_tag(:div, error_msg || error_list.join(", "), :class => "error-message")
+    end
+  end
+  
+  # display a flash box
+  def flash_box(text, options = {})
+    content_tag :div, :class => "flash #{options[:class]}" do
+      flash[:notice] +
+      link_to("Hide Message...", "#", :class => "close-text")
     end
   end
   
@@ -44,7 +56,6 @@ module ApplicationHelper
       {}
     end
   end
-  
   
   def link_to_image(image_path, label, url, options={})
     link_to(image_tag(image_path, :class => "vert-middle"), url, options) +
