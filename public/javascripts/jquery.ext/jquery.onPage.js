@@ -5,5 +5,5 @@ jQuery.fn.onPage = function() {
 } 
 
 jQuery.fn.notOnPage = function() { 
-  return !this.onPage();
+  return this.size() == 0;
 } 

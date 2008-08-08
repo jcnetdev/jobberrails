@@ -134,6 +134,7 @@ end
 
 after "deploy:update_code", "localize:install_gems"
 after "deploy:update_code", "localize:copy_shared_configurations"
+after "deploy:update_code", "localize:merge_assets"
 
 namespace :localize do
   desc "copy shared configurations to current"
@@ -145,8 +146,19 @@ namespace :localize do
   
   desc "installs / upgrades gem dependencies "
   task :install_gems, :roles => [:app] do
-    sudo "date" # fuck you capistrano
+    sudo "date"
     run "cd #{release_path} && sudo rake RAILS_ENV=production gems:install"
+  end
+  
+  desc "merge asset files"
+  task :merge_assets, :roles => [:app] do
+    sudo "date" 
+    run "cd #{release_path} && sudo script/merge_assets"
+  end
+
+  task :merge_current_assets, :roles => [:app] do
+    sudo "date" 
+    run "cd #{current_path} && sudo script/merge_assets"
   end
   
 end
