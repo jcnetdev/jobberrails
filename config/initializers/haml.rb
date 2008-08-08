@@ -1,1 +1,1 @@
-Haml.init_rails(binding)
+Haml.init_rails(binding) if defined? Haml
