@@ -76,11 +76,17 @@ end
 before "deploy:restart", "admin:migrate"
 after  "deploy", "live:send_request"
 
+after "deploy:setup", "init:set_permissions"
 after "deploy:setup", "init:database_yml"
 after "deploy:setup", "init:create_database"
 after "deploy:setup", "init:create_vhost"
 after "deploy:setup", "init:enable_site"
 namespace :init do
+  desc "setting proper permissions for deploy user"
+  task :set_permissions do
+    sudo "chown -R deploy /var/www/production"
+  end
+  
   desc "create mysql db"
   task :create_database do
     #create the database on setup
@@ -132,8 +138,8 @@ production:
   
 end
 
-after "deploy:update_code", "localize:install_gems"
 after "deploy:update_code", "localize:copy_shared_configurations"
+after "deploy:update_code", "localize:install_gems"
 after "deploy:update_code", "localize:merge_assets"
 
 namespace :localize do

@@ -1,0 +1,87 @@
+======
+Javascripter
+======
+
+Javascripter is designed to DRY up the process of including and generating
+javascripts, so you can think less about javascript configuration and more
+about scripting.
+
+
+Usage
+=====
+
+To use Javascripter, just update your layout(s) with this code:
+
+<head>
+<title>the.rails.ist</title>
+<%= javascripts %>
+</head>
+
+Javascripter will then include your javascripts automatically:
+
+<head>
+	<title>the.rails.ist</title>
+	<link href="/javascripts/application.js?1170968897" />
+</head>
+
+Javascripter will also dynamically include javascripts for each of your
+controllers (if such javascripts are present), so you can keep your scripts
+organized into logical sections.
+
+
+Organize your javascripts
+=========================
+
+Javascripter uses a simple set of conventions:
+
+- Javascripts for your entire application should be stored in application.js
+- Javascripts for specific controllers should be stored in controller.js
+- Javascripts for specific actions should be stored in controller_action.js
+
+When used in combination, these conventions can scale up to support pretty
+big applications.
+
+
+Include additional javascripts
+==============================
+
+Conventions are great, but need to add your own javascripts?
+
+<%= javascripts :include => "reset" %>
+<%= javascripts :include => ["reset", "fonts"] %>
+
+
+Use nested javascripts (optional)
+=================================
+
+For bigger projects, you might wish to break your javascripts into separate 
+directories.
+
+To use nested javascripts, just create subdirectories in public/javascripts 
+for each of your controllers, and then add javascripts for individual 
+actions you wish to script.
+
+- Javascripts for an entire controller should be stored in controller.js
+- Javascripts for specific actions should be stored in controller/action.js
+
+
+Generator
+=========
+
+Javascripter also includes a generator that will create a default set of
+javascripts (application.js) and a separate
+javascript for each controller in your application.
+
+To use the generator, run this command in your terminal:
+
+script/generate javascripts
+
+If you add a new controller, just run the generator again and a new
+javascript for the controller will be created. (Javascripter will safely ignore
+any existing javascripts.)
+
+
+Feedback
+========
+
+Comments, bug reports, and svn diffs welcome at http://the.railsi.st.

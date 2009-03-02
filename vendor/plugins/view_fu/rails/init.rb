@@ -1,0 +1,1 @@
+require 'view_fu'

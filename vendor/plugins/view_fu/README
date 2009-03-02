@@ -1,0 +1,145 @@
+ViewFu
+======
+
+ViewFu is a Rails plugin that provides all the miscellaneous View tasks. It's a combination of the functionality of Styler, Javascripter, and Headline (from Patrick Crowley, the.railsi.st) - along with additional tweaks such as providing commonly used View Helpers Methods.
+
+
+Maintainer Info
+======
+
+Tyler Crocker
+NeoRails.com
+
+Looking for *the one* awesome rails developer to add to your project? I may be available to help out. Contact me at neorails@gmail.com. 
+
+
+ViewFu HTML Helpers
+=======
+ViewFu provides helpers for commonly used html elements
+
+br #=> <br />
+hr #=> <hr />
+anchor("posts") #=> <a name='posts'></a>
+clear #=> <div class="clear"></div>
+clear(:left) #=> <div class="clearleft"></div>
+clear_tag(:br) #=> <br class="clear" />
+lorem #=> Lorem ipsum dolor...
+
+
+ViewFu Helper Queries
+=======
+production? #=> returns true if Rails.env == "production"
+is_new? #=> returns true is we're on a "new" or "create" action
+is_edit? #=> returns true is we're on an "edit" or "update" action
+use_cache? #=> returns true if perform_caching is turned on
+
+
+ViewFu Misc Helpers
+=======
+paging(@array) #=> display a will_paginate paging links (only if the array is a valid paging collection)
+paging(@array, :sabros) #=> wrap the paging links with a class "sabros"
+
+
+Haml Specific Helpers
+=======
+Haml allows you to pash a hash of attributes. ViewFu assists this by providing a simple "hidden" helper that allows you to conditionally hide page elements.
+
+%div{hidden} #=> <div style="display:none">
+%div.posts{hidden_if(@posts.empty?)} #=> hide the .posts div if the array is empty
+%p.empty{hidden_unless(@posts.empty?)} #=> hide the empty posts message if the array has elements
+
+
+Stylesheets
+=======
+ViewFu allows you to add a dynamic stylesheets collection to the top of your page. If you have any partials that depend on a stylesheet, they just need to call add_stylesheet(path) and the styles will be available on the page. 
+
+You'll just need to add a call *stylesheets* somewhere your page header. 
+
+stylesheets
+writes the stylesheet collection to html
+
+stylesheet
+alias around stylesheet_link_tag
+
+stylesheet_folder(path) 
+lets you include a recursive folder of stylesheets
+
+page_stylesheets
+output stylesheets specific to a page
+
+add_stylesheet(path)
+adds a stylesheet to the collection to be included on the page
+
+ignore_stylesheet(path)
+removes a stylesheet from the collection to be included on the page
+
+See lib/stylesheet/README for more details
+
+
+Javascripts
+=======
+ViewFu allows you to add a dynamic javascript collection to the top(or bottom) of your page. Now, if you have a partial that depends on a javascript library, you can just include it via add_javascript(path) and it will appear on the top of your page.
+
+You'll just need add a call to *javascripts* to your layout and the javascripts you included an all your partials will appear.
+
+javascripts
+writes the javascript collection to html
+
+javascript
+alias around javascript_include_tag
+
+javascript_folder(path) 
+lets you include a recursive folder of javascripts
+
+page_javascripts
+output javascripts specific to a page
+
+add_javascript(path)
+adds a javascript to the collection to be included on the page
+
+ignore_javascript(path)
+removes a javascript from the collection to be included on the page
+
+See lib/javascripter/README for more details
+
+Page Titles
+=======
+ViewFu allows you to easily set the current page title from anywhere on your views
+
+title
+Displays the current page title
+
+title(new_title)
+Sets the page title
+
+See lib/headliner/README for more details
+
+
+Meta Tags
+=======
+ViewFu allows you to set meta tags on your page header from anywhere. Just add a call to meta_tags somewhere in your page header.
+
+meta_tags
+output all the html meta tags currently on the page
+
+meta_keywords
+output the meta keywords tag
+
+meta_keywords(val)
+set the page meta keywords
+
+meta_description
+output the meta description tag
+
+meta_description(val)
+set the page meta description
+
+
+More Plugins
+======
+
+If you like ViewFu, you'll *love* FormFu. It provides a beautiful way to generate tableless Rails html forms. Works just like form_for, except it'll generate the entire XHTML (label, wrapper, validation message, etc). 
+https://github.com/neorails/form_fu
+
+
+Copyright (c) 2008 NeoRails.com, released under the MIT license

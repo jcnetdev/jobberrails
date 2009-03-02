@@ -1,0 +1,89 @@
+FormFu
+======
+FormFu is a Rails plugin that enables you to easily build nice, tableless forms
+
+
+Maintainer Info
+======
+
+Tyler Crocker
+NeoRails.com
+
+Looking for *the one* awesome rails developer to add to your project? I may be available to help out. Contact me at neorails@gmail.com. 
+
+
+Installation
+======
+
+script/plugin install git://github.com/neorails/view_fu.git
+
+or
+
+# Add this to your environment.rb
+config.gem 'neorails-form_fu', :version => '>= 0.1',
+                               :lib => 'form_fu',
+                               :source => 'http://gems.github.com'
+
+
+Usage
+======
+
+  Create a Basic Form for a Model
+  <% build_form_for @widget do |f| %>
+    <%= f.text_field :name %>
+    <%= f.text_area :description %>
+    <%= f.submit %>
+  <% end %>
+  
+  --------
+  
+  Create Fields for a Model
+  <% build_fields_for @address do |a| %>
+    <%= a.text_field :street %>
+    <%= a.text_field :city %>
+    <%= a.select :state, State.to_select %>
+  <% end %>
+  
+  --------
+  
+  Set up a label
+  <%= f.text_field :name, :label => "Enter Your Name" %>  
+
+  --------
+  
+  Change the separator
+  <%= f.text_field :name, :separator => "" %>
+
+  --------
+  
+  Take a Block (adds it to the field div)
+  <% f.text_field :name do %>
+    <div class="hint">
+      please enter your name...
+    </div>
+  <% end %>
+
+  --------
+  
+  Add options to the field
+  <%= f.text_field :name, :field => {:class => "left"} %>
+
+  --------
+
+  Add an Error Messages Summary
+  <%= f.error_messages %>
+                                 
+  --------
+  
+  Access the originals form_for helpers (prepend _input to names)
+  <%= f.text_field_input :name %>
+  outputs only a text_field input tag
+
+Try my other plugins
+======
+
+If you like FormFu, you'll *love* ViewFu. It will help you deal with Stylesheets, Javascripts, Page titles, and adds tons of useful view helper methods.
+https://github.com/neorails/view_fu
+
+
+Copyright (c) 2008 NeoRails.com, released under the MIT license

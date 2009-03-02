@@ -4,8 +4,8 @@
 # you don't control web/app server and can't set it the proper way
 # ENV['RAILS_ENV'] ||= 'production'
 
-# Specifies gem version of Rails to use when vendor/rails is not present
-RAILS_GEM_VERSION = '2.1.0' unless defined? RAILS_GEM_VERSION
+# # Specifies gem version of Rails to use when vendor/rails is not present
+# RAILS_GEM_VERSION = '2.1.0' unless defined? RAILS_GEM_VERSION
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
@@ -68,78 +68,6 @@ Rails::Initializer.run do |config|
   
   # Gem Requirements
   config.gem "haml", :version => ">= 2.0.0"
-  
-  # exception_notification
-  # ------
-  # Allows unhandled exceptions to be emailed on production
-  # ------
-  config.github_gem 'jcnetdev-exception_notification', :version => '>= 1.1'
-
-  # acts_as_list
-  # ------
-  # Allows ActiveRecord Models to be easily ordered via position attributes
-  # ------
-  config.github_gem 'jcnetdev-acts_as_list', :version => '>= 1.0'
-  
-  # app_config
-  # ------
-  # Allow application wide configuration settings via YML files
-  # ------
-  config.github_gem 'jcnetdev-app_config', :version => '>= 1.0'
-  
-  # auto_migrations
-  # ------
-  # Allows migrations to be run automatically based on updating the schema.rb
-  # ------
-  config.github_gem 'jcnetdev-auto_migrations', :version => '>= 1.2'
-
-  # better_partials
-  # ------
-  # Adds a helper (partial) that wraps around render :partial. Pass local variables and blocks to your partials easily
-  # ------
-  config.github_gem 'jcnetdev-better_partials', :version => '>= 1.0'
-  
-  # form_fu
-  # ------
-  # Allows easier rails form creation and processing
-  # ------
-  config.github_gem 'neorails-form_fu', :version => '>= 0.51'
-                                       
-  # paperclip
-  # ------
-  # Allows easy uploading of files
-  # ------
-  config.github_gem 'jcnetdev-paperclip', :version => '>= 1.0'
-
-  # seed-fu
-  # ------
-  # Allows easier database seeding of tables
-  # ------
-  config.github_gem 'jcnetdev-seed-fu', :version => '>= 1.0'
-
-  # subdomain-fu
-  # ------
-  # Allows easier subdomain selection
-  # ------
-  # config.github_gem 'jcnetdev-subdomain-fu', :version => '>= 0.0.2'
-  
-  # validates_as_email_address
-  # ------
-  # Allows for easy format validation of email addresses
-  # ------
-  config.github_gem 'jcnetdev-validates_as_email_address', :version => '>= 1.0'
-  
-  # will_paginate
-  # ------
-  # Allows nice and easy pagination
-  # ------
-  config.github_gem 'jcnetdev-will_paginate', :version => '>= 2.3.2'
-  
-  # view_fu
-  # ------
-  # Adds view helpers for titles, stylesheets, javascripts, and common tags
-  # ------
-  config.github_gem 'neorails-view_fu', :version => '>= 0.3'
   
 end
 

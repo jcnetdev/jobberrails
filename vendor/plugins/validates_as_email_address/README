@@ -1,0 +1,51 @@
+= validates_as_email_address
+
++validates_as_email_address+ adds support for validating the format/length of
+email addresses.
+
+== Resources
+
+Wiki
+
+* http://wiki.pluginaweek.org/Validates_as_email_address
+
+API
+
+* http://api.pluginaweek.org/validates_as_email_address
+
+Development
+
+* http://dev.pluginaweek.org/browser/trunk/validates_as_email_address
+
+Source
+
+* http://svn.pluginaweek.org/trunk/validates_as_email_address
+
+== Description
+
+Consistently reliable email address validations are difficult to find and hard
+to choose as there are far too many implementations in various programming
+languages.  This plugins builds on Thijs van der Vossen's validates_as_email
+by adding advanced validation option support and also validating the length of
+the email address.
+
+== Usage
+
+=== Example
+
+  class Person < ActiveRecord::Base
+    validates_as_email_address :email, :on => :create
+  end
+
+== Testing
+
+Before you can run any tests, the following gem must be installed:
+* plugin_test_helper[http://wiki.pluginaweek.org/Plugin_test_helper]
+
+== References
+
+* Cal Henderson - {Parsing Email Adresses in PHP}[http://iamcal.com/publish/articles/php/parsing_email]
+* Tim Fletcher - {Ruby Translation}[http://tfletcher.com/lib/rfc822.rb]
+* Dan Kubb[dan.kubb@autopilotmarketing.com]
+* Ximon Eighteen[ximon.eightee@int.greenpeace.org]
+* Thijs van der Vossen - validates_as_email[https://svn.greenpeace.org/repositories/rails_plugins/validates_as_email]
